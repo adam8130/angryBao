@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/fav.png" rel="shortcut icon" />
+    <title>生氣的陳寶寶</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(to right bottom,
+                rgba(116, 130, 206, 0.5),
+                rgba(219, 147, 233, 0.5));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .game {
+        width: 60%;
+        height: 60%;
+        background: linear-gradient(to right bottom,
+                rgba(116, 130, 206, 0.5),
+                rgba(219, 147, 233, 0.5));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0;
+        border-radius: 30px;
+    }
+
+    .tittle {
+        width: 80%;
+        background: linear-gradient(to right bottom,
+                rgba(177, 70, 62, 0.5),
+                rgba(216, 38, 15, 0.5));
+        text-align: center;
+        border-radius: 20px;
+        padding: 20px 0;
+
+    }
+
+    .tel {
+        width: 80%;
+        background-color: azure;
+        padding: 10px;
+        font-size: 18px;
+        white-space: pre-line;
+        text-align: center;
+        border-radius: 20px;
+        display: none;
+    }
+
+    .tel div {
+        width: 70%;
+        height: 50px;
+        margin: auto;
+        background: linear-gradient(to right bottom,
+                rgba(177, 70, 62, 0.5),
+                rgba(216, 38, 15, 0.5));
+        padding: 10px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 2px 2px 4px black;
+    }
+
+    .tel a {
+        text-decoration: none;
+        color: azure;
+        line-height: 1.2;
+        font-size: 16px;
+    }
+
+    .monitor {
+        width: 80%;
+        height: 120px;
+        background-color: azure;
+        padding: 10px;
+        font-size: 14px;
+        white-space: pre-line;
+        text-align: center;
+        border-radius: 20px;
+        margin-top: -10%;
+    }
+
+    .pannel {
+        display: flex;
+        justify-content: center;
+    }
+
+    .box1,
+    .box2,
+    .box3,
+    .box4 {
+        width: 80%;
+        text-align: center;
+        margin-top: -20%;
+    }
+
+    .box1 button,
+    .box2 button,
+    .box3 button,
+    .box4 button {
+        margin: 10px 0;
+    }
+
+    .box2 {
+        display: none;
+    }
+
+    .box3 {
+        display: none;
+    }
+
+    .box4 {
+        display: none;
+    }
+
+    .box1 input,
+    .box2 input,
+    .box3 input {
+        border-radius: 20px;
+    }
+
+    @media screen and (min-width:768px) {
+        .game{
+            width: 400px;
+            height: 450px;
+        }
+         
+    }
+</style>
+
+<body>
+    <div class="container">
+
+        <div class="game">
+
+            <div class="tittle">
+                <div class="txt">
+                    <h3>拯救陳寶寶大作戰<br>
+                        請在輸入框中輸入a/b/c/d
+                    </h3>
+                </div>
+            </div>
+
+            <div class="tel" id="tel">
+                <h3>請趕快打給<br>陳寶寶</h3>
+                <div>
+                    <a href="https://line.me/ti/p/4gdNiq32pV">火速打給本寶寶專線</a>
+                </div>
+            </div>
+
+
+            <div class="monitor" id="monitor"></div>
+
+            <div class="pannel">
+
+                <div class="box1" id="box1">
+                    <input type="text" id="input">
+                    <button id="btn1" onclick="check(),start2()">summit</button>
+                </div>
+
+                <div class="box2" id="box2">
+                    <input type="text" id="input2">
+                    <button id="btn2" onclick="check2(),start3()">summit</button>
+                </div>
+
+                <div class="box3" id="box3">
+                    <input type="text" id="input3">
+                    <button id="btn3" onclick="check3(),start4()">summit</button>
+                </div>
+
+                <div class="box4" id="box4">
+                    <input type="text" id="input4">
+                    <button id="btn4" onclick="check4()">summit</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        let proBlems = [
+            {
+                question: "陳寶寶為什麼生氣了?\n(A)你沒有理陳寶寶\n(B)陳寶寶有病\n(C)陳寶寶壞了\n(D)陳寶寶沒有生氣",
+                answer: "A",
+                status: false
+            },
+            {
+                question: "陳寶寶為什麼不打給妳?\n(A)陳寶寶在耍智障\n(B)陳寶寶有病\n(C)陳寶寶壞了\n(D)妳沒有打給陳寶寶",
+                answer: "D",
+                status: false
+            },
+            {
+                question: "陳寶寶其實一直在等妳?\n(A)最好是\n(B)才怪\n(C)是的陳寶寶一直在等妳\n(D)陳寶寶瘋了",
+                answer: "C",
+                status: false
+            },
+            {
+                question: "請珍惜陳寶寶好嗎\n(A)好的\n(B)好的\n(C)好的\n(D)好的",
+                answer: "A,B,C,D",
+                status: false
+            }
+        ]
+
+        window.onload = start()
+
+
+        function start() {
+            document.getElementById("monitor").innerHTML = proBlems[0].question
+        }
+
+        function start2() {
+            document.getElementById("monitor").innerHTML = proBlems[1].question
+        }
+
+        function start3() {
+            document.getElementById("monitor").innerHTML = proBlems[2].question
+        }
+        function start4() {
+            document.getElementById("monitor").innerHTML = proBlems[3].question
+        }
+
+        function check() {
+
+            let ans = document.getElementById("input").value.toUpperCase()
+            console.log(ans);
+            if (ans == proBlems[0].answer) {
+                alert("陳寶寶心情+1");
+
+                let box1 = document.getElementById("box1");
+                box1.style = "display:none";
+
+                let box2 = document.getElementById("box2");
+                box2.style = "display:block";
+
+            } else {
+                alert("錯!!!\n陳寶寶心情-1")
+
+                let box1 = document.getElementById("box1");
+                box1.style = "display:none";
+
+                let box2 = document.getElementById("box2");
+                box2.style = "display:block";
+            }
+        }
+
+        function check2() {
+
+            let ans = document.getElementById("input2").value.toUpperCase()
+            console.log(ans);
+            if (ans == proBlems[1].answer) {
+                alert("陳寶寶心情+1");
+                let box2 = document.getElementById("box2");
+                box2.style = "display:none";
+
+                let box3 = document.getElementById("box3");
+                box3.style = "display:block";
+
+            } else {
+                alert("錯!!!\n陳寶寶心情-1")
+                let box2 = document.getElementById("box2");
+                box2.style = "display:none";
+
+                let box3 = document.getElementById("box3");
+                box3.style = "display:block";
+            }
+        }
+
+        function check3() {
+
+            let ans = document.getElementById("input3").value.toUpperCase()
+            console.log(ans);
+            if (ans == proBlems[2].answer) {
+                alert("陳寶寶心情+1");
+                let box3 = document.getElementById("box3");
+                box3.style = "display:none";
+
+                let box4 = document.getElementById("box4");
+                box4.style = "display:block";
+
+            } else {
+                alert("錯!!!\n陳寶寶心情-1")
+                let box3 = document.getElementById("box3");
+                box3.style = "display:none";
+
+                let box4 = document.getElementById("box4");
+                box4.style = "display:block";
+            }
+        }
+
+        function check4() {
+
+            let ans = document.getElementById("input4").value.toUpperCase()
+            console.log(ans);
+            if (ans == "A" || ans == "B" || ans == "C" || ans == "D") {
+                alert("陳寶寶心情+1");
+                let box4 = document.getElementById("box4");
+                box4.style = "display:none";
+
+                let moni = document.getElementById("monitor");
+                moni.style = "display:none";
+
+                let tel = document.getElementById("tel");
+                tel.style = "display:block";
+
+            } else {
+                alert("錯!!!\n陳寶寶心情-1")
+                let box4 = document.getElementById("box4");
+                box4.style = "display:none";
+
+                let moni = document.getElementById("monitor");
+                moni.style = "display:none";
+
+                let tel = document.getElementById("tel");
+                tel.style = "display:block";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
