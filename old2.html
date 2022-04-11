@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/fav.png" rel="shortcut icon" />
+    <title>生氣的邱寶寶</title>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right bottom,
+                rgba(116, 130, 206, 0.5),
+                rgba(219, 147, 233, 0.5));
+    }
+    .game{
+        width: 60%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background: linear-gradient(to right bottom,
+                rgba(231, 232, 236, 0.5),
+                rgba(237, 223, 240, 0.5));
+        border-radius: 25px;
+    }
+    .tittle{
+        width: 90%;
+        text-align: center;
+    }
+    .wrap{
+        width: 90%;
+        height: 40%;
+        background: linear-gradient(to right bottom,
+                rgba(177, 70, 62, 0.5),
+                rgba(216, 38, 15, 0.5));
+        border-radius: 25px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    .monitor{
+        width: 90%;
+        background-color: white;
+        height: 80%;
+        padding: 10px;
+        font-size: 14px;
+        white-space: pre-line;
+        margin-top: 5px;
+        border-radius: 10px;
+    }
+    .wrap a{
+        display: none;
+        width: 60%;
+        padding: 5px 10px;
+        border-radius: 25px;
+        background: linear-gradient(to right bottom,
+                rgba(233, 86, 76, 0.5),
+                rgba(216, 38, 15, 0.5));
+        font-size: 14px;
+        position: absolute;
+        bottom: 10%;
+    }
+    .buttons{
+        width: 90%;
+        height: 40%;
+        background: linear-gradient( 30deg,
+                rgba(33, 120, 192, 0.5),
+                rgba(15, 184, 214, 0.5));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 20px;
+    }
+    button{
+        background:rgba(255,255,255,0.8);
+        width: 65%;
+        height: 15%;
+        border-radius: 30px;
+        transition: all 0.5s;
+    }
+    button:hover{
+        transform: scale(1.1);
+    }
+    .return{
+        display: none;
+    }
+    @media screen and (min-width:528px){
+        .game{
+            width: 40%;
+            height: 80%;
+        }
+        .monitor{
+            height: 75%;
+            
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="game">
+
+            <div class="tittle">
+                <h2>拯救陳寶寶大作戰</h2>
+            </div>
+            <div class="wrap">
+                <h2>Question</h2>
+                <div class="monitor" id="monitor"></div>
+                <a id="a" href="https://line.me/ti/p/4gdNiq32pV">火速打給本寶寶專線</a>
+            </div>
+
+            <div class="buttons" id="btns">
+                <button id="btnA">A</button>
+                <button id="btnB">B</button>
+                <button id="btnC">C</button>
+                <button id="btnD">D</button>
+                <button class="return" id="return">請再給我一次機會</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        // let problems = [
+        //     {
+        //         quest: "邱寶寶為什麼生氣了?\n(A)你沒有理本寶寶\n(B)邱大少有病\n(C)邱大少壞了\n(D)邱寶寶沒有生氣",
+        //         ans: "A"
+        //     },
+        //     {
+        //         quest: "邱寶寶為什麼不打給妳?\n(A)邱寶寶在耍智障\n(B)邱大少有病\n(C)邱大少壞了\n(D)妳沒有打給邱寶寶",
+        //         ans: "D"
+        //     },
+        //     {
+        //         quest: "邱寶寶沒打給你時其實很難受嗎?\n(A)最好是\n(B)怎麼可能\n(C)是的QQ\n(D)邱大少才部會",
+        //         ans: "C"
+        //     }
+        // ]
+
+        let problems = [
+            {
+                quest: "\n陳寶寶為什麼生氣了?\n(A)你沒有理陳寶寶\n(B)陳寶寶有病\n(C)陳寶寶壞了\n(D)陳寶寶沒有生氣",
+                ans: "A",
+            },
+            {
+                quest: "\n陳寶寶為什麼不打給妳?\n(A)陳寶寶在耍智障\n(B)陳寶寶在睡覺\n(C)陳寶寶壞了\n(D)妳沒有打給陳寶寶",
+                ans: "D",
+            },
+            {
+                quest: "\n陳寶寶其實一直在等妳嗎?\n(A)最好是\n(B)想太多了\n(C)是的陳寶寶一直在等妳\n(D)怎麼可能",
+                ans: "C",
+            },
+            {
+                quest: "\n你知道錯了嗎?\n(A)陳寶寶才錯了\n(B)邱大少從來都沒有對過\n(C)陳寶寶只會亂生氣\n(D)陳寶寶根本瘋了",
+                ans: "B",
+            },
+            {
+                quest: "\n請珍惜陳寶寶好嗎\n(A)好的\n(B)好的\n(C)好的\n(D)好的",
+                ans: "A,B,C,D",
+            }
+        ]
+
+        let monitor = document.getElementById("monitor");
+        let btns = document.getElementsByTagName("button")
+        let games = document.getElementById("btns")
+        let rtn = document.getElementById("return")
+        let a = document.getElementById("a")
+        let heart = 0
+        let rest = 2
+        let cdt = 0
+            
+        
+        function start(){
+            heart = 0
+            rtn.style.display = "none"
+            monitor.innerHTML = problems[0].quest
+            for(i=0; i<btns.length-1; i++){
+                btns[i].onclick = function(){
+                    console.log(this.innerHTML);
+                    if(this.innerHTML == problems[0].ans){
+                        alert("陳寶寶心情 +20")
+                        heart+=20
+                        start2()
+                        return heart
+                    }else{
+                        alert("陳寶寶心情 -20")
+                        heart-=20
+                        start2()
+                        return heart
+                    }
+                }
+            }
+        }
+
+        function start2(){
+            monitor.innerHTML = problems[1].quest
+            for(i=0; i<btns.length-1; i++){
+                btns[i].onclick = function(){
+                    console.log(this.innerHTML);
+                    if(this.innerHTML == problems[1].ans){
+                        alert("陳寶寶心情 +20")
+                        heart+=20
+                        start3()
+                        return heart
+                    }else{
+                        alert("陳寶寶心情 -20")
+                        heart-=20
+                        start3()
+                        return heart
+                    }
+                }
+            }
+        }
+        
+        function start3(){
+            monitor.innerHTML = problems[2].quest
+            for(i=0; i<btns.length-1; i++){
+                btns[i].onclick = function(){
+                    console.log(this.innerHTML);
+                    if(this.innerHTML == problems[2].ans){
+                        alert("陳寶寶心情 +20")
+                        heart+=20
+                        start4()
+                        return heart
+                    }else{
+                        alert("陳寶寶心情 -20")
+                        heart-=20
+                        start4()
+                        return heart
+                    }
+                }
+            }
+        }
+
+        function start4(){
+            monitor.innerHTML = problems[3].quest
+            for(i=0; i<btns.length-1; i++){
+                btns[i].onclick = function(){
+                    console.log(this.innerHTML);
+                    if(this.innerHTML == problems[3].ans){
+                        alert("陳寶寶心情 +20")
+                        heart+=20
+                        start5()
+                        return heart
+                    }else{
+                        alert("陳寶寶心情 -20")
+                        heart-=20
+                        start5()
+                        return heart
+                    }
+                }
+            }
+        }
+
+        function start5(){
+            monitor.innerHTML = problems[4].quest
+            for(i=0; i<btns.length-1; i++){
+                btns[i].onclick = function(){
+                    console.log(this.innerHTML);
+                        alert("陳寶寶心情 +20")
+                        heart+=20
+                        total()
+                        return heart
+                   
+                }
+            }
+        }
+
+        function total(){
+            if(heart >= 100){
+                monitor.innerHTML = "你得到的分數: "+ heart+"<br>"
+                +"你已找回本寶寶"+"<br>"+"現在你可以放心的打給本寶寶了"+"<br>"+"<br>"
+                a.style="display:block"
+                a.setAttribute("position:absolute","buttom:5px")
+                rtn.style.display = "none"
+            }else{
+                monitor.innerHTML = "\n你得到的分數: "+ heart+"<br>"
+                +"你已失去本寶寶"+"<br>"+"<br>"+
+                "強烈建議你再重來一次"
+                rtn.style.display = "block"
+                rtn.onclick = function(){
+                    start()
+                }
+            }
+        }
+        
+        start()
+        
+        
+        
+        
+
+    </script>
+
+</body>
+
+</html>
