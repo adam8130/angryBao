@@ -50,6 +50,9 @@
         margin-top: -10%;
         margin-bottom: 10px;
     }
+    #hrt{
+        position: initial;
+    }
     #hrt2{
         width: 70%;
         height: 30%;
@@ -71,7 +74,7 @@
     }
     .msg {
         color: rgba(33, 31, 31, 0.9);
-        color: rgba(156, 133, 22, 0.8);
+        color: rgba(255, 216, 20, 0.8);
         visibility: visible;
     }
 
@@ -100,7 +103,7 @@
         width: 90%;
         text-align: center;
         color:rgba(191, 40, 20, 0.8);
-        color: rgba(226, 192, 20, 0.8);
+        color: rgba(10, 10, 10, 0.8);
     }
 
     .wrap {
@@ -159,7 +162,7 @@
         padding: 8px 0;
         letter-spacing: 1px;
         font-size: 14px;
-        color: rgba(11, 126, 36, 0.8);
+        color: rgba(10, 18, 70, 0.8);
     }
 
     .wrap a {
@@ -214,7 +217,7 @@
 
         <div class="heart">
             
-            <div id="hrt"></div>
+            <div id="hrt">請最好謹慎作答</div>
             <div id="hrt2">
                 <div class="hrt3"></div>
             </div>
@@ -449,9 +452,6 @@
 
             function result(para) {
 
-                $("#hrt").css("visibility", "visible").css
-                    ("position","initial")
-
                 if(para === "+10"){
                     heart += parseInt(para)
                     $("#hrt").html(`本寶寶目前心情指數 ${heart}`)
@@ -476,8 +476,10 @@
 
 
             $(".btn").click(function () {
+
                 count++
                 clearTimeout(timer)
+
                 if (count === 7 || count === 10) {
                     result("+10")
                     addhrt+=10
@@ -499,8 +501,7 @@
 
             $("#rbtn").click(function () {
                 count = 0; heart = 0; addhrt = -100;
-                $("#hrt").css("visibility", "hidden").css
-                    ("position","absolute")
+                $("#hrt").html("請最好謹慎作答")
                 $(".hrt3").css("left",`${addhrt}%`)
                 $(".bad").css("display", "none")
                 $(".good").css("display", "none")
