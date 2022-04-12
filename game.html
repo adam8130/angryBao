@@ -50,37 +50,39 @@
         margin-top: -10%;
         margin-bottom: 10px;
     }
-    #hrt{
+
+    #hrt {
         position: initial;
     }
-    #hrt2{
+
+    #hrt2 {
         width: 70%;
         height: 30%;
-        background: rgba(255,255,255,0.8);
+        background: rgba(255, 255, 255, 0.8);
         border-radius: 25px;
         overflow: hidden;
         position: relative;
     }
-    .hrt3{
+
+    .hrt3 {
         width: 100%;
         height: 100%;
-        background:linear-gradient(to right,
-        rgba(50, 88, 239, 0.5),
-        rgba(223, 43, 43, 0.5));
+        background: linear-gradient(to right,
+                rgba(50, 88, 239, 0.5),
+                rgba(223, 43, 43, 0.5));
         border-radius: 25px;
         position: absolute;
         transition: all 1s;
         left: -100%;
     }
+
     .msg {
-        color: rgba(33, 31, 31, 0.9);
-        color: rgba(255, 216, 20, 0.8);
         visibility: visible;
     }
 
     .msgE {
         transform: translateY(-40px) scale(1.1);
-        transition: all 1s;
+        transition: transform 1s;
         position: absolute;
         bottom: -20px;
     }
@@ -102,7 +104,7 @@
     .tittle {
         width: 90%;
         text-align: center;
-        color:rgba(191, 40, 20, 0.8);
+        color: rgba(191, 40, 20, 0.8);
         color: rgba(10, 10, 10, 0.8);
     }
 
@@ -181,9 +183,11 @@
         display: none;
         font-size: 14px;
     }
-    .good h3{
+
+    .good h3 {
         margin-bottom: 20px;
     }
+
     .bad {
         text-align: center;
         display: none;
@@ -216,7 +220,7 @@
     <div class="container">
 
         <div class="heart">
-            
+
             <div id="hrt">請最好謹慎作答</div>
             <div id="hrt2">
                 <div class="hrt3"></div>
@@ -315,91 +319,90 @@
             this.ans = a
         }
 
-        let Q1 = new Question(
-            "\n陳寶寶有在生氣嗎?",
-            "(A)陳寶寶在睡覺吧",
-            "(B)是的陳寶寶正在生氣",
-            "(C)陳寶寶在刷抖音吧",
-            "(D)陳寶寶在夢遊吧",
-            "(B)是的陳寶寶正在生氣",
-        )
-        let Q2 = new Question(
-            "\n陳寶寶為什麼生氣了?",
-            "(A)你沒有理陳寶寶",
-            "(B)陳寶寶有病",
-            "(C)陳寶寶壞了",
-            "(D)陳寶寶沒有生氣",
-            "(A)你沒有理陳寶寶",
-        )
-        let Q3 = new Question(
-            "\n陳寶寶生氣怎麼辦?",
-            "(A)兩半炒雞蛋",
-            "(B)一人分一半",
-            "(C)今天吃涼拌",
-            "(D)趕快跟陳寶寶道歉",
-            "(D)趕快跟陳寶寶道歉",
-        )
-        let Q4 = new Question(
-            "\n陳寶寶為什麼不說話了?",
-            "(A)陳寶寶在耍智障",
-            "(B)陳寶寶在生氣",
-            "(C)陳寶寶壞了",
-            "(D)陳寶寶沒有生氣",
-            "(B)陳寶寶在生氣",
-        )
-        let Q5 = new Question(
-            "\n陳寶寶為什麼不打給妳?",
-            "(A)陳寶寶在做夢",
-            "(B)陳寶寶在睡覺",
-            "(C)陳寶寶壞了",
-            "(D)妳沒有打給陳寶寶",
-            "(D)妳沒有打給陳寶寶",
-        )
-        let Q6 = new Question(
-            "\n陳寶寶問你知道錯了嗎?",
-            "(A)陳寶寶才錯了",
-            "(B)邱大少從來沒有對過",
-            "(C)陳寶寶只會亂生氣",
-            "(D)陳寶寶根本瘋了",
-            "(B)邱大少從來沒有對過",
-        )
-        let Q7 = new Question(
-            "\n陳寶寶在想什麼?",
-            "(A)你的錯",
-            "(B)你的錯",
-            "(C)你的錯",
-            "(D)你的錯",
-            "ABCD",
-        )
-        let Q8 = new Question(
-            "\n陳寶寶其實一直在等妳嗎?",
-            "(A)最好是",
-            "(B)想太多了",
-            "(C)是的陳寶寶一直在等妳",
-            "(D)怎麼可能",
-            "(C)是的陳寶寶一直在等妳",
-        )
-        let Q9 = new Question(
-            "\n陳寶寶問你該怎麼辦?",
-            "(A)點外送給陳寶寶吃",
-            "(B)唱歌給陳寶寶聽",
-            "(C)帶陳寶寶上分",
-            "(D)買蛋糕給陳寶寶吃",
-            "(D)買蛋糕給陳寶寶吃",
-        )
-        let Q10 = new Question(
-            `\n請珍惜陳寶寶好嗎<br>(只能說好)`,
-            "(A)好的",
-            "(B)好的",
-            "(C)好的",
-            "(D)好的",
-            "ABCD"
-        )
-
         let problems = [
-            Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10
+
+            Q1 = new Question(
+                "\n陳寶寶有在生氣嗎?",
+                "(A)陳寶寶在睡覺吧",
+                "(B)是的陳寶寶正在生氣",
+                "(C)陳寶寶在刷抖音吧",
+                "(D)陳寶寶在夢遊吧",
+                "(B)是的陳寶寶正在生氣",
+            ),
+            Q2 = new Question(
+                "\n陳寶寶為什麼生氣了?",
+                "(A)你沒有理陳寶寶",
+                "(B)陳寶寶有病",
+                "(C)陳寶寶壞了",
+                "(D)陳寶寶沒有生氣",
+                "(A)你沒有理陳寶寶",
+            ),
+            Q3 = new Question(
+                "\n陳寶寶生氣怎麼辦?",
+                "(A)兩半炒雞蛋",
+                "(B)一人分一半",
+                "(C)今天吃涼拌",
+                "(D)趕快跟陳寶寶道歉",
+                "(D)趕快跟陳寶寶道歉",
+            ),
+            Q4 = new Question(
+                "\n陳寶寶為什麼不說話了?",
+                "(A)陳寶寶在耍智障",
+                "(B)陳寶寶在生氣",
+                "(C)陳寶寶壞了",
+                "(D)陳寶寶沒有生氣",
+                "(B)陳寶寶在生氣",
+            ),
+            Q5 = new Question(
+                "\n陳寶寶為什麼不打給妳?",
+                "(A)陳寶寶在做夢",
+                "(B)陳寶寶在睡覺",
+                "(C)陳寶寶壞了",
+                "(D)妳沒有打給陳寶寶",
+                "(D)妳沒有打給陳寶寶",
+            ),
+            Q6 = new Question(
+                "\n陳寶寶問你知道錯了嗎?",
+                "(A)陳寶寶才錯了",
+                "(B)邱大少從來沒有對過",
+                "(C)陳寶寶只會亂生氣",
+                "(D)陳寶寶根本瘋了",
+                "(B)邱大少從來沒有對過",
+            ),
+            Q7 = new Question(
+                "\n陳寶寶在想什麼?",
+                "(A)你的錯",
+                "(B)你的錯",
+                "(C)你的錯",
+                "(D)你的錯",
+                "ABCD",
+            ),
+            Q8 = new Question(
+                "\n陳寶寶其實一直在等妳嗎?",
+                "(A)最好是",
+                "(B)想太多了",
+                "(C)是的陳寶寶一直在等妳",
+                "(D)怎麼可能",
+                "(C)是的陳寶寶一直在等妳",
+            ),
+            Q9 = new Question(
+                "\n陳寶寶問你該怎麼辦?",
+                "(A)點外送給陳寶寶吃",
+                "(B)唱歌給陳寶寶聽",
+                "(C)帶陳寶寶上分",
+                "(D)買蛋糕給陳寶寶吃",
+                "(D)買蛋糕給陳寶寶吃",
+            ),
+            Q10 = new Question(
+                `\n請珍惜陳寶寶好嗎<br>(只能說好)`,
+                "(A)好的",
+                "(B)好的",
+                "(C)好的",
+                "(D)好的",
+                "ABCD"
+            )
+
         ]
-        
 
         $(document).ready(function () {
 
@@ -408,43 +411,52 @@
             let max = problems.length
             let heart = 0
             let timer
+            let timer2
+            let timer3
             let addhrt = -100
 
 
 
             function start() {
-                // console.log(count);
-                // console.log(heart);
+                
                 if (count < max) {
+
                     // $.each(btn,function(i,v){
                     //     btn.html(`${problems[count].c1}`)
                     // })
+                    // $("#moni").html(`Q${count+1}`)
                     $("#moni").html(`${problems[count].quest}`)
                     $("#btnA").html(`${problems[count].c1}`)
                     $("#btnB").html(`${problems[count].c2}`)
                     $("#btnC").html(`${problems[count].c3}`)
                     $("#btnD").html(`${problems[count].c4}`)
+
                 } else {
 
-                    if (heart >= 80) {
-                        setTimeout(function(){
+                    clearTimeout(timer2)
+                    $(".btn").slideUp()
+
+                    if (heart >= 70) {
+
+                        timer2 = setTimeout(function () {
                             $("#moni").html(`你得到的分數 ${heart} 分`)
-                            $(".buttons").css("padding","15px")
+                            $(".buttons").css("padding", "15px")
                             $(".good").css("display", "block")
-                            $("#rbtn").css("height","40px").fadeIn()
-                            .html("再玩一次")
-                            $("#home").css("height","40px").fadeIn()
-                        },2000)
-                        $(".btn").slideUp("fast")  
+                            $("#rbtn").css("height", "40px").fadeIn()
+                                .html("再玩一次")
+                            $("#home").css("height", "40px").fadeIn()
+                        }, 2000)
+
                     } else {
-                        setTimeout(function(){
+
+                        timer2 = setTimeout(function () {
                             $("#moni").html(`你得到的分數 ${heart} 分`)
-                            $(".buttons").css("padding","15px")
+                            $(".buttons").css("padding", "15px")
                             $(".bad").css("display", "block")
-                            $("#rbtn").css("height","40px").fadeIn()
-                        },2000)
+                            $("#rbtn").css("height", "40px").fadeIn()
+                        }, 2000)
+
                     }
-                    $(".btn").slideUp("fast")
                 }
             }
 
@@ -452,21 +464,21 @@
 
             function result(para) {
 
-                if(para === "+10"){
+                if (para === "+10") {
                     heart += parseInt(para)
                     $("#hrt").html(`本寶寶目前心情指數 ${heart}`)
-                }else if(para === "-10" && heart<=0){
+                } else if (para === "-10" && heart <= 0) {
                     $("#hrt").html(`警告 : 本寶寶準備炸裂`)
-                }else{
+                } else {
                     heart += parseInt(para)
                     $("#hrt").html(`本寶寶目前心情指數 ${heart}`)
                 }
-                    
+
                 $("#msg").html(`本寶寶心情 ${para}`).addClass("msgE").css("visibility", "visible")
 
                 timer = setTimeout(function () {
                     $("#msg").css("visibility", "hidden").css
-                    ("position","absolute").toggleClass("msgE")
+                        ("position", "absolute").toggleClass("msgE")
                 }, 1000)
 
                 start()
@@ -479,20 +491,21 @@
 
                 count++
                 clearTimeout(timer)
-
+                $(".msg").css("color","rgba(14, 100, 186, 0.8)")
                 if (count === 7 || count === 10) {
+                    addhrt += 10
+                    $(".hrt3").css("left", `${addhrt}%`)
                     result("+10")
-                    addhrt+=10
-                    $(".hrt3").css("left",`${addhrt}%`)
                 } else if ($(this).html() === problems[count - 1].ans) {
-                    addhrt+=10
-                    $(".hrt3").css("left",`${addhrt}%`)
+                    addhrt += 10
+                    $(".hrt3").css("left", `${addhrt}%`)
                     result("+10")
                 } else {
                     result("-10")
-                    if(addhrt>-100){
-                        addhrt-=10
-                        $(".hrt3").css("left",`${addhrt}%`)
+                    $(".msg").css("color","rgba(217, 43, 43, 0.8")
+                    if (addhrt > -100) {
+                        addhrt -= 10
+                        $(".hrt3").css("left", `${addhrt}%`)
                     }
                 }
             })
@@ -502,10 +515,10 @@
             $("#rbtn").click(function () {
                 count = 0; heart = 0; addhrt = -100;
                 $("#hrt").html("請最好謹慎作答")
-                $(".hrt3").css("left",`${addhrt}%`)
+                $(".hrt3").css("left", `${addhrt}%`)
                 $(".bad").css("display", "none")
                 $(".good").css("display", "none")
-                $(".buttons").css("padding","8px")
+                $(".buttons").css("padding", "8px")
                 $(".btn").slideDown()
                 $("#rbtn").fadeOut()
                 $("#home").fadeOut()
