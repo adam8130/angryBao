@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Rubik:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>Game</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Rubik', sans-serif;
+        font-weight: 800;
+
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right bottom,
+                rgba(116, 130, 206, 0.5),
+                rgba(219, 147, 233, 0.5));
+    }
+
+    .heart {
+        width: 70%;
+        height: 10%;
+        background: linear-gradient(to right bottom,
+                rgba(231, 232, 236, 0.5),
+                rgba(237, 223, 240, 0.5));
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 18px;
+        font-family: 'Rubik', sans-serif;
+        color: rgba(235, 92, 92, 0.8);
+        padding: 10px 0;
+    }
+    #hrt2{
+        width: 70%;
+        height: 30%;
+        background: rgba(255,255,255);
+        border-radius: 25px;
+        overflow: hidden;
+        position: relative;
+    }
+    .hrt3{
+        width: 100%;
+        height: 100%;
+        background:linear-gradient(to right,
+        rgba(112, 136, 231, 0.5),
+        rgba(223, 43, 43, 0.5));
+        border-radius: 25px;
+        position: absolute;
+        transition: all 1s;
+        left: -100%;
+    }
+    .msg {
+        color: rgba(17, 17, 17, 0.9);
+        visibility: visible;
+    }
+
+    .msgE {
+        transform: translateY(-40px) scale(1.1);
+        transition: all 1s;
+        position: absolute;
+        bottom: -20px;
+    }
+
+    .game {
+        width: 70%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background: linear-gradient(to right bottom,
+                rgba(231, 232, 236, 0.5),
+                rgba(237, 223, 240, 0.5));
+        border-radius: 25px;
+        margin-top: 5%;
+    }
+
+    .tittle {
+        width: 90%;
+        text-align: center;
+    }
+
+    .wrap {
+        width: 90%;
+        background: linear-gradient(to right bottom,
+                rgba(177, 70, 62, 0.5),
+                rgba(216, 38, 15, 0.5));
+        border-radius: 25px;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+    }
+
+    .wrap h2 {
+        margin-bottom: 10px;
+    }
+
+    .monitor {
+        width: 90%;
+        background-color: white;
+        height: 80%;
+        padding: 20px 10px;
+        font-size: 16px;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+    }
+
+    .buttons {
+        width: 90%;
+        padding: 10px 10px;
+        background: linear-gradient(30deg,
+                rgba(33, 120, 192, 0.5),
+                rgba(15, 184, 214, 0.5));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 20px;
+    }
+
+    .buttons button {
+        background: rgba(255, 255, 255, 0.8);
+        width: 90%;
+        height: 25%;
+        border-radius: 40px;
+        margin: 3px 0;
+        padding: 8px 0;
+        letter-spacing: 1px;
+    }
+
+    .wrap a {
+        width: 100px;
+        padding: 10px 20px;
+        border-radius: 25px;
+        background: linear-gradient(to right bottom,
+                rgba(233, 86, 76, 0.5),
+                rgba(216, 38, 15, 0.5));
+        font-size: 14px;
+        color: rgba(246, 35, 7, 0.8);
+    }
+
+    .good {
+        text-align: center;
+        display: none;
+        font-size: 14px;
+    }
+    .good h3{
+        margin-bottom: 20px;
+    }
+    .bad {
+        text-align: center;
+        display: none;
+        font-size: 14px;
+    }
+
+    .return {
+        display: none;
+        /* visibility: hidden; */
+    }
+
+    .home {
+        display: none;
+        /* visibility: hidden; */
+    }
+
+    @media screen and (min-width:528px) {
+        .game {
+            width: 40%;
+            height: 80%;
+        }
+
+        .monitor {
+            height: 75%;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+
+        <div class="heart">
+            
+            <div id="hrt"></div>
+            <div id="hrt2">
+                <div class="hrt3"></div>
+            </div>
+
+        </div>
+
+        <div class="game">
+
+            <div class="tittle">
+                <h2>拯救陳寶寶大作戰</h2>
+            </div>
+            <div class="wrap">
+                <h2>Question</h2>
+                <div class="monitor">
+                    <div id="moni"></div>
+                    <div class="good" id="good">
+                        <h3>你已成功找回本寶寶<br>請火速打給本寶寶吧</h3>
+                        <a id="a" href="https://line.me/ti/p/4gdNiq32pV">火速打給本寶寶專線</a>
+                    </div>
+                    <div class="bad" id="bad">
+                        <h3>你已成功失去本寶寶<br>但是呢本寶寶決定<br>再給你一次機會</h3>
+                    </div>
+                    <div class="msg" id="msg"></div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn" id="btnA">A</button>
+                <button class="btn" id="btnB">B</button>
+                <button class="btn" id="btnC">C</button>
+                <button class="btn" id="btnD">D</button>
+                <button class="home" id="home">Home</button>
+                <button class="return" id="rbtn">請再給我一次機會</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="jquery-3.6.0.js"></script>
+
+
+    <script type="text/javascript">
+
+
+        let arr = [
+            {
+                quest: "\n陳寶寶有在生氣嗎?\n(A)陳寶寶在睡覺吧\n(B)是的陳寶寶正在生氣\n(C)陳寶寶在刷抖音吧\n(D)陳寶寶在夢遊吧",
+                ans: "(B)是的陳寶寶正在生氣",
+            },
+            {
+                quest: "\n陳寶寶為什麼生氣了?\n(A)你沒有理陳寶寶\n(B)陳寶寶有病\n(C)陳寶寶壞了\n(D)陳寶寶沒有生氣",
+                ans: "(A)你沒有理陳寶寶",
+            },
+            {
+                quest: "\n陳寶寶生氣怎麼辦?\n(A)兩半炒雞蛋\n(B)一人分一半\n(C)今天吃涼拌\n(D)趕快跟陳寶寶道歉",
+                ans: "D",
+            },
+            {
+                quest: "\n陳寶寶為什麼不說話了?\n(A)陳寶寶在耍智障\n(B)陳寶寶在生氣\n(C)陳寶寶壞了\n(D)陳寶寶沒有生氣",
+                ans: "B",
+            },
+            {
+                quest: "\n陳寶寶為什麼不打給妳?\n(A)陳寶寶在做夢\n(B)陳寶寶在睡覺\n(C)陳寶寶壞了\n(D)妳沒有打給陳寶寶",
+                ans: "D",
+            },
+            {
+                quest: "\n陳寶寶問你知道錯了嗎?\n(A)陳寶寶才錯了\n(B)邱大少從來都沒有對過\n(C)陳寶寶只會亂生氣\n(D)陳寶寶根本瘋了",
+                ans: "B",
+            },
+            {
+                quest: "\n陳寶寶在想什麼?\n(A)你的錯\n(B)你的錯\n(C)陳寶寶沒有錯\n(D)陳寶寶沒有錯",
+                ans: "ABCD",
+            },
+            {
+                quest: "\n陳寶寶其實一直在等妳嗎?\n(A)最好是\n(B)想太多了\n(C)是的陳寶寶一直在等妳\n(D)怎麼可能",
+                ans: "C",
+            },
+            {
+                quest: "\n陳寶寶問你該怎麼辦?\n(A)點外送給陳寶寶吃\n(B)唱歌給陳寶寶聽\n(C)帶陳寶寶上分\n(D)買蛋糕給陳寶寶吃",
+                ans: "D",
+            },
+            {
+                quest: "\n請珍惜陳寶寶好嗎(只能說好)\n(A)好的\n(B)好的\n(C)好的\n(D)好的",
+                ans: "ABCD"
+            },
+        ]
+
+        function Question(q, c1, c2, c3, c4, a) {
+            this.quest = q
+            this.c1 = c1
+            this.c2 = c2
+            this.c3 = c3
+            this.c4 = c4
+            this.ans = a
+        }
+
+        let Q1 = new Question(
+            "\n陳寶寶有在生氣嗎?",
+            "(A)陳寶寶在睡覺吧",
+            "(B)是的陳寶寶正在生氣",
+            "(C)陳寶寶在刷抖音吧",
+            "(D)陳寶寶在夢遊吧",
+            "(B)是的陳寶寶正在生氣",
+        )
+        let Q2 = new Question(
+            "\n陳寶寶為什麼生氣了?",
+            "(A)你沒有理陳寶寶",
+            "(B)陳寶寶有病",
+            "(C)陳寶寶壞了",
+            "(D)陳寶寶沒有生氣",
+            "(A)你沒有理陳寶寶",
+        )
+        let Q3 = new Question(
+            "\n陳寶寶生氣怎麼辦?",
+            "(A)兩半炒雞蛋",
+            "(B)一人分一半",
+            "(C)今天吃涼拌",
+            "(D)趕快跟陳寶寶道歉",
+            "(D)趕快跟陳寶寶道歉",
+        )
+        let Q4 = new Question(
+            "\n陳寶寶為什麼不說話了?",
+            "(A)陳寶寶在耍智障",
+            "(B)陳寶寶在生氣",
+            "(C)陳寶寶壞了",
+            "(D)陳寶寶沒有生氣",
+            "(B)陳寶寶在生氣",
+        )
+        let Q5 = new Question(
+            "\n陳寶寶為什麼不打給妳?",
+            "(A)陳寶寶在做夢",
+            "(B)陳寶寶在睡覺",
+            "(C)陳寶寶壞了",
+            "(D)妳沒有打給陳寶寶",
+            "(D)妳沒有打給陳寶寶",
+        )
+        let Q6 = new Question(
+            "\n陳寶寶問你知道錯了嗎?",
+            "(A)陳寶寶才錯了",
+            "(B)邱大少從來都沒有對過",
+            "(C)陳寶寶只會亂生氣",
+            "(D)陳寶寶根本瘋了",
+            "(B)邱大少從來都沒有對過",
+        )
+        let Q7 = new Question(
+            "\n陳寶寶在想什麼?",
+            "(A)你的錯",
+            "(B)你的錯",
+            "(C)陳寶寶沒有錯",
+            "(D)陳寶寶沒有錯",
+            "ABCD",
+        )
+        let Q8 = new Question(
+            "\n陳寶寶其實一直在等妳嗎?",
+            "(A)最好是",
+            "(B)想太多了",
+            "(C)是的陳寶寶一直在等妳",
+            "(D)怎麼可能",
+            "(C)是的陳寶寶一直在等妳",
+        )
+        let Q9 = new Question(
+            "\n陳寶寶問你該怎麼辦?",
+            "(A)點外送給陳寶寶吃",
+            "(B)唱歌給陳寶寶聽",
+            "(C)帶陳寶寶上分",
+            "(D)買蛋糕給陳寶寶吃",
+            "(D)買蛋糕給陳寶寶吃",
+        )
+        let Q10 = new Question(
+            `\n請珍惜陳寶寶好嗎<br>(只能說好)`,
+            "(A)好的",
+            "(B)好的",
+            "(C)好的",
+            "(D)好的",
+            "ABCD"
+        )
+
+        let problems = [
+            Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10
+        ]
+        
+
+        $(document).ready(function () {
+
+
+            let count = 0
+            let max = problems.length
+            let heart = 0
+            let timer
+            let addhrt = -100
+
+
+
+            function start() {
+                // console.log(count);
+                // console.log(heart);
+                if (count < max) {
+                    // $.each(btn,function(i,v){
+                    //     btn.html(`${problems[count].c1}`)
+                    // })
+                    $("#moni").html(`${problems[count].quest}`)
+                    $("#btnA").html(`${problems[count].c1}`)
+                    $("#btnB").html(`${problems[count].c2}`)
+                    $("#btnC").html(`${problems[count].c3}`)
+                    $("#btnD").html(`${problems[count].c4}`)
+                } else {
+
+                    if (heart >= 80) {
+                        setTimeout(function(){
+                            $("#moni").html(`你得到的分數 ${heart} 分`)
+                            $(".buttons").css("padding","15px")
+                            $(".good").css("display", "block")
+                            $("#rbtn").css("height","40px").fadeIn()
+                            .html("再玩一次")
+                            $("#home").css("height","40px").fadeIn()
+                        },2000)
+                        $(".btn").slideUp("fast")  
+                    } else {
+                        setTimeout(function(){
+                            $("#moni").html(`你得到的分數 ${heart} 分`)
+                            $(".buttons").css("padding","15px")
+                            $(".bad").css("display", "block")
+                            $("#rbtn").css("height","40px").fadeIn()
+                        },2000)
+                    }
+                    $(".btn").slideUp("fast")
+                }
+            }
+
+
+
+            function result(para) {
+
+                $("#hrt").css("visibility", "visible").css
+                    ("position","initial")
+
+                if(para === "+10"){
+                    heart += parseInt(para)
+                    $("#hrt").html(`本寶寶目前心情指數 ${heart}`)
+                }else if(para === "-10" && heart<=0){
+                    $("#hrt").html(`警告 : 本寶寶準備炸裂`)
+                }else{
+                    heart += parseInt(para)
+                    $("#hrt").html(`本寶寶目前心情指數 ${heart}`)
+                }
+                    
+                $("#msg").html(`本寶寶心情 ${para}`).addClass("msgE").css("visibility", "visible")
+
+                timer = setTimeout(function () {
+                    $("#msg").css("visibility", "hidden").css
+                    ("position","absolute").toggleClass("msgE")
+                }, 1000)
+
+                start()
+                return heart
+            }
+
+
+
+            $(".btn").click(function () {
+                count++
+                clearTimeout(timer)
+                if (count === 7 || count === 10) {
+                    result("+10")
+                    addhrt+=10
+                    $(".hrt3").css("left",`${addhrt}%`)
+                } else if ($(this).html() === problems[count - 1].ans) {
+                    addhrt+=10
+                    $(".hrt3").css("left",`${addhrt}%`)
+                    result("+10")
+                } else {
+                    result("-10")
+                    if(addhrt>-100){
+                        addhrt-=10
+                        $(".hrt3").css("left",`${addhrt}%`)
+                    }
+                }
+            })
+
+
+
+            $("#rbtn").click(function () {
+                count = 0; heart = 0; addhrt = -100;
+                $("#hrt").css("visibility", "hidden").css
+                    ("position","absolute")
+                $(".hrt3").css("left",`${addhrt}%`)
+                $(".bad").css("display", "none")
+                $(".good").css("display", "none")
+                $(".buttons").css("padding","8px")
+                $(".btn").slideDown()
+                $("#rbtn").fadeOut()
+                $("#home").fadeOut()
+                start()
+            })
+
+            start()
+        })
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
