@@ -8,7 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Rubik:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <title>Home</title>
+    <title>Time</title>
 </head>
 
 <style>
@@ -121,6 +121,27 @@
         align-items: center;
         border-radius: 15px;
         text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .banner {
+        height: 500%;
+        width: 90%;
+        position: absolute;
+        top: 0px;
+        display: none;
+    }
+    .bannerarr{
+        display: flex;
+        flex-direction: column;
+        /* background-color: aqua; */
+    }
+    .img {
+        background-size: cover;
+        height: 260px;
+        margin: 20px 0;
+        flex-shrink: 0;
     }
 
     .moni {
@@ -138,9 +159,14 @@
         display: none;
     }
 
+    .imgs {
+        background-size: cover;
+        display: none;
+    }
+
     .buttons {
         width: 90%;
-        height: 150px;
+        height: 130px;
         background: linear-gradient(30deg,
                 rgba(33, 120, 192, 0.5),
                 rgba(15, 184, 214, 0.5));
@@ -148,7 +174,7 @@
         align-items: center;
         justify-content: center;
         border-radius: 20px;
-        margin-top: -15px;
+        /* margin-top: -15px; */
         overflow: hidden;
         position: relative;
     }
@@ -185,30 +211,7 @@
         flex-shrink: 0;
     }
 
-    #return {
-        display: none;
-    }
 
-    .next {
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 10px 15px 10px 15px;
-        border-color: transparent transparent transparent rgba(39, 176, 213, 0.3);;
-        position: absolute;
-        right: 3%; 
-    }
-
-    .prev {
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 10px 15px 10px 15px;
-        border-color: transparent rgba(39, 176, 213, 0.3) transparent transparent ;
-        position: absolute;
-        left: 3%;
-        display: none;
-    }
 
 
     @media screen and (min-width:528px) {
@@ -221,7 +224,6 @@
             height: 75%;
         }
     }
-    
 </style>
 
 <body>
@@ -241,11 +243,29 @@
 
             <div class="wrap">
 
-                <h2>Question</h2>
+                <h2>Welcome</h2>
 
-                <div class="monitor">
+                <div class="monitor" id="monitor">
+
                     <div class="moni" id="moni"></div>
+                    <div class="imgs" id="imgs"></div>
+
+                    <div class="banner" id="banner">
+
+                        <div class="bannerarr" id="bannerarr">
+
+                            <img src="time/time-03.JPG" class="img" id="img">
+                            <img src="time/time-04.JPG" class="img" id="img">
+                            <img src="time/time-05.JPG" class="img" id="img">
+                            <img src="time/time-06.PNG" class="img" id="img">
+                            <img src="time/time-07.JPG" class="img" id="img">
+
+                        </div>
+
+                    </div>
+
                     <div class="moni2" id="moni2"></div>
+
                 </div>
 
             </div>
@@ -257,17 +277,11 @@
                 <div class="slider" id="slider">
 
                     <div class="sliderbtn" id="sliderbtn">
-                        <button class="btn" id="btnA">陳寶寶大作戰</button>
-                        <button class="btn" id="btnB">邱寶寶大作戰</button>
-                        <button class="btn" id="btnC">時光機</button>
-                        <button class="btn" id="btnD">星之卡比</button>
+                        <button class="btn" id="btnA">開始</button>
                         <button class="btn" id="home">Home</button>
                     </div>
 
                 </div>
-
-                <div class="next" id="next"></div>
-                <div class="prev" id="prev"></div>
 
             </div>
 
@@ -284,25 +298,13 @@
         let arr = [
 
             {
-                tittle: "拯救陳寶寶大作戰",
-                desc: `陳寶寶快要爆炸了<br>快來搶救陳寶寶吧`
+                tittle: "歡迎來到時光機",
+                desc: `準備好的話<br>請按下開始吧`
             },
             {
                 tittle: "拯救邱大少大作戰\n",
                 desc: `邱大少快要爆炸了<br>快來搶救邱大少吧`
-            },
-            {
-                tittle: "時光走廊",
-                desc: `時光荏苒 光陰不再<br>快打開來看看吧`
-            },
-            {
-                tittle: "卡比卡比卡比",
-                desc: ""
-            },
-            {
-                tittle: "Home",
-                desc: ""
-            },
+            }
 
         ]
 
@@ -311,12 +313,30 @@
         //     $(`${element}`).css(`${style}`,`${para}`)
         // }
 
+        let imgarr = [
+
+            "time/time-01.JPG",
+            "time/time-02.JPG",
+            "time/time-03.JPG",
+            "time/time-04.JPG",
+            "time/time-05.JPG",
+            "time/time-06.JPG",
+            "time/time-07.JPG",
+            "time/time-08.JPG",
+            "time/time-09.JPG",
+            "time/time-10.JPG",
+            "time/time-11.JPG",
+            "time/time-12.JPG",
+
+        ]
+
 
         $(document).ready(function () {
 
 
             let max = arr.length
-            let t1, t2, t3
+            let t1, t2, t3, t4, t5
+            let y, x
 
 
             function start() {
@@ -324,101 +344,87 @@
                 let v = 0
                 let count = 0
 
-                $("#moni").html(`${arr[count].tittle}`).slideDown()
-                setTimeout(function () {
+                clearTimeout(t1); clearTimeout(t2)
+                t1 = setTimeout(function () {
+                    $("#moni").html(`${arr[count].tittle}`).slideDown()
+                }, 1000)
+                t2 = setTimeout(function () {
                     $(".moni2").html(`${arr[count].desc}`).slideDown("slow")
-                }, 2000)
+                }, 2500)
 
-
-                $("#next").click(function () {
-
-                    count++; clearTimeout(t1); clearTimeout(t2);
-
-                    if (count === 4) {
-                        $("#next").css("display", "none").slideUp()
-                    } else if (count === 0) {
-                        $(".prev").css("display", "none").slideUp()
-                    } else {
-                        $("#next").css("display", "block").slideDown()
-                        $("#prev").css("display", "block").slideDown()
-                    }
-
-                    $(".slider").css("left", `${v -= 100}%`)
-
-                    $("#moni").html(`${arr[(count - 1)].tittle}`).slideUp("slow")
-                    $(".moni2").html(`${arr[(count - 1)].desc}`).slideUp("slow")
-
-                    
-                    t1 = setTimeout(function () {
-                        $("#moni").html(`${arr[count].tittle}`).slideDown()
-                    }, 1500)
-
-                    t2 = setTimeout(function () {
-                        $(".moni2").html(`${arr[count].desc}`).slideDown("slow")
-                    }, 3000)
-
-                })
-
-                $("#prev").click(function () {
-
-                    count--; clearTimeout(t1); clearTimeout(t2)
-
-                    if (count === 4) {
-                        $("#next").css("display", "none").slideUp()
-                    } else if (count === 0) {
-                        $(".prev").css("display", "none").slideUp()
-                    } else {
-                        $("#next").css("display", "block").slideDown()
-                        $("#prev").css("display", "block").slideDown()
-                    }
-
-                    $(".slider").css("left", `${v += 100}%`)
-                    $("#moni").html(`${arr[count + 1].tittle}`).slideUp("slow")
-                    $(".moni2").html(`${arr[(count + 1)].desc}`).slideUp("slow")
-                    t1 = setTimeout(function () {
-                        $("#moni").html(`${arr[count].tittle}`).slideDown()
-                    }, 1500)
-                    t2 = setTimeout(function () {
-                        $(".moni2").html(`${arr[count].desc}`).slideDown("slow")
-                    }, 3000)
-
-                })
-
-                $("#home").click(function () {
-
-                    count = 0; clearTimeout(t1); clearTimeout(t2);
-
-                    if (count === 4) {
-                        $("#next").css("display", "none").slideUp()
-                    } else if (count === 0) {
-                        $(".prev").css("display", "none").slideUp()
-                        $("#next").css("display", "block").slideDown()
-                    } else {
-                        $("#next").css("display", "block").slideDown()
-                        $("#prev").css("display", "block").slideDown()
-                    }
-
-                    $(".slider").css("left", `${v += 400}%`)
-                    $("#moni").html(`${arr[4].tittle}`).slideUp("slow")
-                    $(".moni2").html(`${arr[(4)].desc}`).slideUp("slow")
-                    t1 = setTimeout(function () {
-                        $("#moni").html(`${arr[count].tittle}`).slideDown()
-                    }, 1500)
-                    t2 = setTimeout(function () {
-                        $(".moni2").html(`${arr[count].desc}`).slideDown("slow")
-                    }, 3000)
-
-
-                })
             }
 
             $("#btnA").click(function () {
-                $(location).prop("href", "https://zzdx12345.github.io/angryBao/game.html")
+
+                $("#moni").slideUp()
+                $("#moni2").slideUp()
+
+
+                clearTimeout(t1)
+                t1 = setTimeout(function () {
+                    $("#imgs").css({ "width": "95%", "height": "150px", "background-image": `url(${imgarr[0]})` }).slideDown(800)
+                }, 1000)
+
+
+                clearTimeout(t2)
+                t2 = setTimeout(function () {
+                    $("#btnA").fadeOut(1000)
+                    $(".buttons").fadeOut(1000)
+                    $(".heart").fadeOut(1000)
+
+                    y = document.getElementById("imgs").offsetHeight
+                    x = document.getElementById("imgs").offsetWidth
+                    console.log(y, x);
+                    return y, x
+                }, 3000)
+
+
+                clearTimeout(t3)
+                t3 = setTimeout(function () {
+                    $("#monitor").animate({ height: "300px" }, 1000)
+                    $("#imgs").css("background-image", `url(${imgarr[0]})`).fadeOut(1000)
+                }, 5000)
+
+
+                clearTimeout(t4)
+                t4 = setTimeout(function () {
+                    $("#imgs").css({"height":"300px","background-image": `url(${imgarr[1]})`}).slideDown(1000)
+                }, 6000)
+
+
+                clearTimeout(t5)
+                t5 = setTimeout(function () {
+                    start2()
+                }, 9000)
             })
 
-            $("#btnC").click(function(){
-                $(location).prop("href","https://zzdx12345.github.io/angryBao/time.html")
-            })
+
+            function start2() {
+
+                $("#imgs").css("background-image", `url(${imgarr[1]})`).fadeOut(1000)
+
+                clearTimeout(t1)
+                t1 = setTimeout(function () {
+                    $("#banner").fadeIn(1500)
+                }, 1000)
+
+                clearTimeout(t2)
+                t2 = setTimeout(function(){
+                    $("#banner").animate({top:"-100%"},1000)
+                },4000)
+
+                clearTimeout(t3)
+                t3 = setTimeout(function(){
+                    $("#banner").animate({top:"-200%"},1000)
+                },7000)
+
+
+            }
+
+
+
+
+
 
             start()
 
