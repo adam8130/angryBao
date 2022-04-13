@@ -140,7 +140,7 @@
 
     .buttons {
         width: 90%;
-        height: 150px;
+        height: 130px;
         background: linear-gradient(30deg,
                 rgba(33, 120, 192, 0.5),
                 rgba(15, 184, 214, 0.5));
@@ -154,10 +154,10 @@
     }
 
     .mask {
-        width: 90%;
+        width: 100%;
         height: 65%;
-        background-color: rgb(255, 255, 255, 0.8);
-        border-radius: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+        /* border-radius: 20px; */
     }
 
     .slider {
@@ -257,10 +257,10 @@
                 <div class="slider" id="slider">
 
                     <div class="sliderbtn" id="sliderbtn">
+                        <button class="btn" id="btnD">Days</button>
+                        <button class="btn" id="btnC">時光機</button>
                         <button class="btn" id="btnA">陳寶寶大作戰</button>
                         <button class="btn" id="btnB">邱寶寶大作戰</button>
-                        <button class="btn" id="btnC">時光機</button>
-                        <button class="btn" id="btnD">星之卡比</button>
                         <button class="btn" id="home">Home</button>
                     </div>
 
@@ -281,27 +281,27 @@
     <script type="text/javascript">
 
 
-        let arr = [
+        let tittleArr = [
 
+            {
+                tittle: "Days",
+                desc: "青蔥歲月 似歌似妳<br>快打開來看看吧"
+            },
+            {
+                tittle: "時光長廊",
+                desc: `時光荏苒 光陰不再<br>快打開來看看吧`
+            },
             {
                 tittle: "拯救陳寶寶大作戰",
                 desc: `陳寶寶快要爆炸了<br>快來搶救陳寶寶吧`
             },
             {
-                tittle: "拯救邱大少大作戰\n",
+                tittle: "拯救邱大少大作戰",
                 desc: `邱大少快要爆炸了<br>快來搶救邱大少吧`
             },
             {
-                tittle: "時光走廊",
-                desc: `時光荏苒 光陰不再<br>快打開來看看吧`
-            },
-            {
-                tittle: "卡比卡比卡比",
-                desc: ""
-            },
-            {
                 tittle: "Home",
-                desc: ""
+                desc: "沒有內容了<br>快點我快速穿梭吧"
             },
 
         ]
@@ -315,7 +315,7 @@
         $(document).ready(function () {
 
 
-            let max = arr.length
+            let max = tittleArr.length
             let t1, t2, t3
 
 
@@ -324,10 +324,13 @@
                 let v = 0
                 let count = 0
 
-                $("#moni").html(`${arr[count].tittle}`).slideDown()
-                setTimeout(function () {
-                    $(".moni2").html(`${arr[count].desc}`).slideDown("slow")
-                }, 2000)
+                clearTimeout(t1)
+                t1 = setTimeout(function(){
+                    $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
+                },2000) 
+                t2 = setTimeout(function () {
+                    $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
+                }, 3500)
 
 
                 $("#next").click(function () {
@@ -335,26 +338,27 @@
                     count++; clearTimeout(t1); clearTimeout(t2);
 
                     if (count === 4) {
-                        $("#next").css("display", "none").slideUp()
+                        $("#next").slideUp()
                     } else if (count === 0) {
-                        $(".prev").css("display", "none").slideUp()
+                        $(".prev").slideUp()
                     } else {
-                        $("#next").css("display", "block").slideDown()
-                        $("#prev").css("display", "block").slideDown()
+                        $("#next").slideDown()
+                        $("#prev").slideDown()
                     }
 
                     $(".slider").css("left", `${v -= 100}%`)
 
-                    $("#moni").html(`${arr[(count - 1)].tittle}`).slideUp("slow")
-                    $(".moni2").html(`${arr[(count - 1)].desc}`).slideUp("slow")
+                    $("#moni").html(`${tittleArr[(count - 1)].tittle}`).slideUp("slow")
+
+                    $(".moni2").html(`${tittleArr[(count - 1)].desc}`).slideUp("slow")
 
                     
                     t1 = setTimeout(function () {
-                        $("#moni").html(`${arr[count].tittle}`).slideDown()
+                        $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
                     }, 1500)
 
                     t2 = setTimeout(function () {
-                        $(".moni2").html(`${arr[count].desc}`).slideDown("slow")
+                        $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
                     }, 3000)
 
                 })
@@ -364,22 +368,22 @@
                     count--; clearTimeout(t1); clearTimeout(t2)
 
                     if (count === 4) {
-                        $("#next").css("display", "none").slideUp()
+                        $("#next").slideUp()
                     } else if (count === 0) {
-                        $(".prev").css("display", "none").slideUp()
+                        $(".prev").slideUp()
                     } else {
-                        $("#next").css("display", "block").slideDown()
-                        $("#prev").css("display", "block").slideDown()
+                        $("#next").slideDown()
+                        $("#prev").slideDown()
                     }
 
                     $(".slider").css("left", `${v += 100}%`)
-                    $("#moni").html(`${arr[count + 1].tittle}`).slideUp("slow")
-                    $(".moni2").html(`${arr[(count + 1)].desc}`).slideUp("slow")
+                    $("#moni").html(`${tittleArr[count + 1].tittle}`).slideUp("slow")
+                    $(".moni2").html(`${tittleArr[(count + 1)].desc}`).slideUp("slow")
                     t1 = setTimeout(function () {
-                        $("#moni").html(`${arr[count].tittle}`).slideDown()
+                        $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
                     }, 1500)
                     t2 = setTimeout(function () {
-                        $(".moni2").html(`${arr[count].desc}`).slideDown("slow")
+                        $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
                     }, 3000)
 
                 })
@@ -389,23 +393,23 @@
                     count = 0; clearTimeout(t1); clearTimeout(t2);
 
                     if (count === 4) {
-                        $("#next").css("display", "none").slideUp()
+                        $("#next").slideUp()
                     } else if (count === 0) {
-                        $(".prev").css("display", "none").slideUp()
-                        $("#next").css("display", "block").slideDown()
+                        $(".prev").slideUp()
+                        $("#next").slideDown()
                     } else {
-                        $("#next").css("display", "block").slideDown()
-                        $("#prev").css("display", "block").slideDown()
+                        $("#next").slideDown()
+                        $("#prev").slideDown()
                     }
 
                     $(".slider").css("left", `${v += 400}%`)
-                    $("#moni").html(`${arr[4].tittle}`).slideUp("slow")
-                    $(".moni2").html(`${arr[(4)].desc}`).slideUp("slow")
+                    $("#moni").html(`${tittleArr[4].tittle}`).slideUp("slow")
+                    $(".moni2").html(`${tittleArr[(4)].desc}`).slideUp("slow")
                     t1 = setTimeout(function () {
-                        $("#moni").html(`${arr[count].tittle}`).slideDown()
+                        $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
                     }, 1500)
                     t2 = setTimeout(function () {
-                        $(".moni2").html(`${arr[count].desc}`).slideDown("slow")
+                        $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
                     }, 3000)
 
 

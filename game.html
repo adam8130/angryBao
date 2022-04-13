@@ -84,7 +84,7 @@
         transform: translateY(-40px) scale(1.1);
         transition: transform 1s;
         position: absolute;
-        bottom: -20px;
+        bottom: -10%;
     }
 
     .game {
@@ -142,6 +142,10 @@
         border-radius: 15px;
     }
 
+    .moni {
+        display: none;
+    }
+
     .buttons {
         width: 90%;
         padding: 10px 10px;
@@ -158,13 +162,14 @@
     .buttons button {
         background: rgba(255, 255, 255, 0.8);
         width: 90%;
-        height: 25%;
+        height: 20%;
         border-radius: 40px;
         margin: 5px 0;
-        padding: 8px 0;
+        padding: 8px 5px;
         letter-spacing: 1px;
         font-size: 14px;
         color: rgba(10, 18, 70, 0.8);
+        display: none;
     }
 
     .wrap a {
@@ -235,8 +240,8 @@
             </div>
             <div class="wrap">
                 <h2>Question</h2>
-                <div class="monitor">
-                    <div id="moni"></div>
+                <div class="monitor" id="monitor">
+                    <div class="moni" id="moni"></div>
                     <div class="good" id="good">
                         <h3>你已成功找回本寶寶<br>請火速打給本寶寶吧</h3>
                         <a id="a" href="https://line.me/ti/p/4gdNiq32pV">火速打給本寶寶專線</a>
@@ -248,7 +253,8 @@
                 </div>
             </div>
 
-            <div class="buttons">
+            <div class="buttons" id="buttons">
+                <div class="mask" id="mask"></div>
                 <button class="btn" id="btnA">A</button>
                 <button class="btn" id="btnB">B</button>
                 <button class="btn" id="btnC">C</button>
@@ -310,7 +316,8 @@
             },
         ]
 
-        function Question(q, c1, c2, c3, c4, a) {
+        function Question(num, q, c1, c2, c3, c4, a) {
+            this.num = num
             this.quest = q
             this.c1 = c1
             this.c2 = c2
@@ -322,6 +329,7 @@
         let problems = [
 
             Q1 = new Question(
+                "Q1",
                 "\n陳寶寶有在生氣嗎?",
                 "(A)陳寶寶在睡覺吧",
                 "(B)是的陳寶寶正在生氣",
@@ -330,6 +338,7 @@
                 "(B)是的陳寶寶正在生氣",
             ),
             Q2 = new Question(
+                "Q2",
                 "\n陳寶寶為什麼生氣了?",
                 "(A)你沒有理陳寶寶",
                 "(B)陳寶寶有病",
@@ -338,6 +347,7 @@
                 "(A)你沒有理陳寶寶",
             ),
             Q3 = new Question(
+                "Q3",
                 "\n陳寶寶生氣怎麼辦?",
                 "(A)兩半炒雞蛋",
                 "(B)一人分一半",
@@ -346,6 +356,7 @@
                 "(D)趕快跟陳寶寶道歉",
             ),
             Q4 = new Question(
+                "Q4",
                 "\n陳寶寶為什麼不說話了?",
                 "(A)陳寶寶在耍智障",
                 "(B)陳寶寶在生氣",
@@ -354,6 +365,7 @@
                 "(B)陳寶寶在生氣",
             ),
             Q5 = new Question(
+                "Q5",
                 "\n陳寶寶為什麼不打給妳?",
                 "(A)陳寶寶在做夢",
                 "(B)陳寶寶在睡覺",
@@ -362,6 +374,7 @@
                 "(D)妳沒有打給陳寶寶",
             ),
             Q6 = new Question(
+                "Q6",
                 "\n陳寶寶問你知道錯了嗎?",
                 "(A)陳寶寶才錯了",
                 "(B)邱大少從來沒有對過",
@@ -370,6 +383,7 @@
                 "(B)邱大少從來沒有對過",
             ),
             Q7 = new Question(
+                "Q7",
                 "\n陳寶寶在想什麼?",
                 "(A)你的錯",
                 "(B)你的錯",
@@ -378,6 +392,7 @@
                 "ABCD",
             ),
             Q8 = new Question(
+                "Q8",
                 "\n陳寶寶其實一直在等妳嗎?",
                 "(A)最好是",
                 "(B)想太多了",
@@ -386,6 +401,7 @@
                 "(C)是的陳寶寶一直在等妳",
             ),
             Q9 = new Question(
+                "Q9",
                 "\n陳寶寶問你該怎麼辦?",
                 "(A)點外送給陳寶寶吃",
                 "(B)唱歌給陳寶寶聽",
@@ -394,6 +410,7 @@
                 "(D)買蛋糕給陳寶寶吃",
             ),
             Q10 = new Question(
+                "Q10",
                 `\n請珍惜陳寶寶好嗎<br>(只能說好)`,
                 "(A)好的",
                 "(B)好的",
@@ -410,52 +427,76 @@
             let count = 0
             let max = problems.length
             let heart = 0
-            let timer
-            let timer2
-            let timer3
             let addhrt = -100
+            let t1, t2, t3, t4
 
 
 
             function start() {
-                
+
                 if (count < max) {
 
                     // $.each(btn,function(i,v){
                     //     btn.html(`${problems[count].c1}`)
                     // })
                     // $("#moni").html(`Q${count+1}`)
-                    $("#moni").html(`${problems[count].quest}`)
-                    $("#btnA").html(`${problems[count].c1}`)
-                    $("#btnB").html(`${problems[count].c2}`)
-                    $("#btnC").html(`${problems[count].c3}`)
-                    $("#btnD").html(`${problems[count].c4}`)
+                    setTimeout(function () {
+                        $("#moni").html(`${problems[count].num}`).slideDown()
+                        $("#btn").slideDown()
+                    }, 1500)
+
+                    setTimeout(function () {
+                        $("#moni").html(`${problems[count].num}`).slideUp(600)
+                        $("#btnA").html(`${problems[count].c1}`).slideUp(600)
+                        $("#btnB").html(`${problems[count].c2}`).slideUp(600)
+                        $("#btnC").html(`${problems[count].c3}`).slideUp(600)
+                        $("#btnD").html(`${problems[count].c4}`).slideUp(600)
+                        // $("#buttons").animate({height:"100px"})
+                    }, 3000)
+
+                    setTimeout(function () {
+                        $("#moni").html(`${problems[count].quest}`).slideDown()
+                        $("#btnA").html(`${problems[count].c1}`).slideDown()
+                        $("#btnB").html(`${problems[count].c2}`).slideDown()
+                        $("#btnC").html(`${problems[count].c3}`).slideDown()
+                        $("#btnD").html(`${problems[count].c4}`).slideDown()
+                        // $("#buttons").animate({height:"40%"})
+                    }, 4000)
 
                 } else {
 
-                    clearTimeout(timer2)
                     $(".btn").slideUp()
+                    $("#moni").html(`${problems[9].quest}`).slideUp()
 
                     if (heart >= 70) {
 
-                        timer2 = setTimeout(function () {
-                            $("#moni").html(`你得到的分數 ${heart} 分`)
-                            $(".buttons").css("padding", "15px")
-                            $(".good").css("display", "block")
+                        clearTimeout(t1)
+                        t1 = setTimeout(function () {
+                            $("#moni").html(`你得到的分數 ${heart} 分`).slideDown()
+                            $(".buttons").css("padding", "20px").slideDown()
+                        }, 2000)
+
+                        clearTimeout(t2)
+                        t2 = setTimeout(function () {
+                            $(".good").slideDown()
                             $("#rbtn").css("height", "40px").fadeIn()
                                 .html("再玩一次")
                             $("#home").css("height", "40px").fadeIn()
-                        }, 2000)
+                        }, 4000)
 
                     } else {
 
-                        timer2 = setTimeout(function () {
-                            $("#moni").html(`你得到的分數 ${heart} 分`)
-                            $(".buttons").css("padding", "15px")
-                            $(".bad").css("display", "block")
-                            $("#rbtn").css("height", "40px").fadeIn()
+                        clearTimeout(t1)
+                        t1 = setTimeout(function () {
+                            $("#moni").html(`你得到的分數 ${heart} 分`).slideDown()
+                            $(".buttons").css("padding", "20px").slideDown()
                         }, 2000)
 
+                        clearTimeout(t2)
+                        t2 = setTimeout(function () {
+                            $(".bad").slideDown()
+                            $("#rbtn").css("height", "40px").fadeIn()
+                        }, 4000)
                     }
                 }
             }
@@ -467,8 +508,10 @@
                 if (para === "+10") {
                     heart += parseInt(para)
                     $("#hrt").html(`本寶寶目前心情指數 ${heart}`)
+
                 } else if (para === "-10" && heart <= 0) {
                     $("#hrt").html(`警告 : 本寶寶準備炸裂`)
+
                 } else {
                     heart += parseInt(para)
                     $("#hrt").html(`本寶寶目前心情指數 ${heart}`)
@@ -476,7 +519,7 @@
 
                 $("#msg").html(`本寶寶心情 ${para}`).addClass("msgE").css("visibility", "visible")
 
-                timer = setTimeout(function () {
+                t3 = setTimeout(function () {
                     $("#msg").css("visibility", "hidden").css
                         ("position", "absolute").toggleClass("msgE")
                 }, 1000)
@@ -489,20 +532,28 @@
 
             $(".btn").click(function () {
 
-                count++
-                clearTimeout(timer)
-                $(".msg").css("color","rgba(14, 100, 186, 0.8)")
+                count++; clearTimeout(t3)
+                $(".msg").css("color", "rgba(14, 100, 186, 0.8)")
+                $("#moni").slideUp(600)
+                $("#btnA").html(`${problems[count-1].c1}`).slideUp(600)
+                $("#btnB").html(`${problems[count-1].c2}`).slideUp(600)
+                $("#btnC").html(`${problems[count-1].c3}`).slideUp(600)
+                $("#btnD").html(`${problems[count-1].c4}`).slideUp(600)
+
                 if (count === 7 || count === 10) {
                     addhrt += 10
                     $(".hrt3").css("left", `${addhrt}%`)
                     result("+10")
+
                 } else if ($(this).html() === problems[count - 1].ans) {
                     addhrt += 10
                     $(".hrt3").css("left", `${addhrt}%`)
                     result("+10")
+
                 } else {
                     result("-10")
-                    $(".msg").css("color","rgba(217, 43, 43, 0.8")
+                    $(".msg").css("color", "rgba(217, 43, 43, 0.8")
+
                     if (addhrt > -100) {
                         addhrt -= 10
                         $(".hrt3").css("left", `${addhrt}%`)
@@ -514,20 +565,21 @@
 
             $("#rbtn").click(function () {
                 count = 0; heart = 0; addhrt = -100;
+                $("#moni").slideUp(600)
                 $("#hrt").html("請最好謹慎作答")
                 $(".hrt3").css("left", `${addhrt}%`)
-                $(".bad").css("display", "none")
-                $(".good").css("display", "none")
-                $(".buttons").css("padding", "8px")
-                $(".btn").slideDown()
+                $(".bad").slideUp()
+                $(".good").slideUp()
+                $(".buttons").css("padding", "8px").slideDown()
+                $(".btn").slideUp()
                 $("#rbtn").fadeOut()
                 $("#home").fadeOut()
                 start()
             })
 
 
-            $("#home").click(function(){
-                $(location).prop("href","https://zzdx12345.github.io/angryBao/home.html")
+            $("#home").click(function () {
+                $(location).prop("href", "https://zzdx12345.github.io/angryBao/home.html")
             })
 
             start()

@@ -180,10 +180,10 @@
     }
 
     .mask {
-        width: 90%;
+        width: 100%;
         height: 65%;
-        background-color: rgb(255, 255, 255, 0.8);
-        border-radius: 20px;
+        background-color: rgb(255, 255, 255, 0.5);
+        /* border-radius: 20px; */
     }
 
     .slider {
@@ -313,7 +313,7 @@
         //     $(`${element}`).css(`${style}`,`${para}`)
         // }
 
-        let imgarr = [
+        let imgArr = [
 
             "time/time-01.JPG",
             "time/time-02.JPG",
@@ -334,7 +334,7 @@
         $(document).ready(function () {
 
 
-            let max = arr.length
+            let max = tittleArr.length
             let t1, t2, t3, t4, t5
             let y, x
 
@@ -346,11 +346,11 @@
 
                 clearTimeout(t1); clearTimeout(t2)
                 t1 = setTimeout(function () {
-                    $("#moni").html(`${arr[count].tittle}`).slideDown()
-                }, 1000)
+                    $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
+                }, 2000)
                 t2 = setTimeout(function () {
-                    $(".moni2").html(`${arr[count].desc}`).slideDown("slow")
-                }, 2500)
+                    $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
+                }, 3500)
 
             }
 
@@ -362,7 +362,7 @@
 
                 clearTimeout(t1)
                 t1 = setTimeout(function () {
-                    $("#imgs").css({ "width": "95%", "height": "150px", "background-image": `url(${imgarr[0]})` }).slideDown(800)
+                    $("#imgs").css({ "width": "95%", "height": "150px", "background-image": `url(${imgArr[0]})` }).slideDown(800)
                 }, 1000)
 
 
@@ -382,13 +382,13 @@
                 clearTimeout(t3)
                 t3 = setTimeout(function () {
                     $("#monitor").animate({ height: "300px" }, 1000)
-                    $("#imgs").css("background-image", `url(${imgarr[0]})`).fadeOut(1000)
+                    $("#imgs").css("background-image", `url(${imgArr[0]})`).fadeOut(1000)
                 }, 5000)
 
 
                 clearTimeout(t4)
                 t4 = setTimeout(function () {
-                    $("#imgs").css({"height":"300px","background-image": `url(${imgarr[1]})`}).slideDown(1000)
+                    $("#imgs").css({"height":"300px","background-image": `url(${imgArr[1]})`}).slideDown(1000)
                 }, 6000)
 
 
@@ -401,7 +401,7 @@
 
             function start2() {
 
-                $("#imgs").css("background-image", `url(${imgarr[1]})`).fadeOut(1000)
+                $("#imgs").css("background-image", `url(${imgArr[1]})`).fadeOut(1000)
 
                 clearTimeout(t1)
                 t1 = setTimeout(function () {
