@@ -295,7 +295,7 @@
     <script type="text/javascript">
 
 
-        let arr = [
+        let tittleArr = [
 
             {
                 tittle: "歡迎來到時光機",
@@ -347,10 +347,10 @@
                 clearTimeout(t1); clearTimeout(t2)
                 t1 = setTimeout(function () {
                     $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
-                }, 2000)
+                }, 1500)
                 t2 = setTimeout(function () {
                     $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
-                }, 3500)
+                }, 3000)
 
             }
 
