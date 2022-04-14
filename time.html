@@ -383,17 +383,17 @@
 
                 clearTimeout(t1)
                 t1 = setTimeout(function () {
-                    $(".btn").fadeOut(1000)
-                    $("#buttons").animate({height:"0",padding:"10px"},1000)
-                    $("#firstImg").css({ "width": "95%", "height": "200px", "background-image": `url(${imgArr[0]})` }).slideDown(1200)
+                    $(".btn").fadeOut(800)
+                    $("#buttons").animate({height:"0",padding:"10px"},800)
+                    $("#firstImg").css({ "width": "95%", "height": "200px", "background-image": `url(${imgArr[0]})` }).slideDown(1000)
                 }, 1000)
 
 
                 clearTimeout(t2)
                 t2 = setTimeout(function () {
                     
-                    $(".buttons").slideUp(1000)
-                    $(".heart").slideUp(1000)
+                    $(".buttons").slideUp(1200)
+                    $(".heart").slideUp(1200)
 
                 }, 3000)
 
@@ -444,7 +444,7 @@
                 clearTimeout(t4)
                 t4 = setTimeout(function () {
                     $("#banner").animate({ top: `${x-=700}%` }, 1500)
-                }, 9000)
+                }, 10000)
 
                 clearTimeout(t5)
                 t5 = setTimeout(function () {
