@@ -126,7 +126,7 @@
     }
 
     .banner {
-        height: 500%;
+        height: 1000%;
         width: 90%;
         position: absolute;
         top: 0px;
@@ -135,12 +135,15 @@
     .bannerarr{
         display: flex;
         flex-direction: column;
-        /* background-color: aqua; */
+        align-items: center;
+        background-color: rgba(180, 100, 100, 0.5);
     }
     .img {
         background-size: cover;
-        height: 260px;
-        margin: 20px 0;
+        /* background-position: center center; */
+        width: 90%;
+        height: 220px;
+        margin: 30px 0;
         flex-shrink: 0;
     }
 
@@ -159,7 +162,7 @@
         display: none;
     }
 
-    .imgs {
+    .firstImg {
         background-size: cover;
         display: none;
     }
@@ -248,7 +251,7 @@
                 <div class="monitor" id="monitor">
 
                     <div class="moni" id="moni"></div>
-                    <div class="imgs" id="imgs"></div>
+                    <div class="firstImg" id="firstImg"></div>
 
                     <div class="banner" id="banner">
 
@@ -259,6 +262,12 @@
                             <img src="time/time-05.JPG" class="img" id="img">
                             <img src="time/time-06.PNG" class="img" id="img">
                             <img src="time/time-07.JPG" class="img" id="img">
+                            <img src="time/time-08.JPG" class="img" id="img">
+                            <img src="time/time-09.JPG" class="img" id="img">
+                            <img src="time/time-10.JPG" class="img" id="img">
+                            <img src="time/time-11.JPG" class="img" id="img">
+                            <img src="time/time-12.JPG" class="img" id="img">
+
 
                         </div>
 
@@ -287,6 +296,7 @@
 
         </div>
     </div>
+
 
 
     <script src="jquery-3.6.0.js"></script>
@@ -354,6 +364,7 @@
 
             }
 
+
             $("#btnA").click(function () {
 
                 $("#moni").slideUp()
@@ -362,7 +373,7 @@
 
                 clearTimeout(t1)
                 t1 = setTimeout(function () {
-                    $("#imgs").css({ "width": "95%", "height": "150px", "background-image": `url(${imgArr[0]})` }).slideDown(800)
+                    $("#firstImg").css({ "width": "95%", "height": "180px", "background-image": `url(${imgArr[0]})` }).slideDown(800)
                 }, 1000)
 
 
@@ -372,23 +383,23 @@
                     $(".buttons").fadeOut(1000)
                     $(".heart").fadeOut(1000)
 
-                    y = document.getElementById("imgs").offsetHeight
-                    x = document.getElementById("imgs").offsetWidth
+                    y = document.getElementById("firstImg").offsetHeight
+                    x = document.getElementById("firstImg").offsetWidth
                     console.log(y, x);
                     return y, x
                 }, 3000)
 
 
                 clearTimeout(t3)
-                t3 = setTimeout(function () {
-                    $("#monitor").animate({ height: "300px" }, 1000)
-                    $("#imgs").css("background-image", `url(${imgArr[0]})`).fadeOut(1000)
+                t3 = setTimeout(function () { 
+                    $("#monitor").animate({ height: "280px" }, 1000)
+                    $("#firstImg").css("background-image", `url(${imgArr[0]})`).fadeOut(1000)
                 }, 5000)
 
 
                 clearTimeout(t4)
                 t4 = setTimeout(function () {
-                    $("#imgs").css({"height":"300px","background-image": `url(${imgArr[1]})`}).slideDown(1000)
+                    $("#firstImg").css({"height":"280px","background-image": `url(${imgArr[1]})`}).slideDown(1000)
                 }, 6000)
 
 
@@ -401,7 +412,8 @@
 
             function start2() {
 
-                $("#imgs").css("background-image", `url(${imgArr[1]})`).fadeOut(1000)
+                $("#firstImg").css("background-image", `url(${imgArr[1]})`).fadeOut(1500)
+                $(".game").animate({width:"85%"})
 
                 clearTimeout(t1)
                 t1 = setTimeout(function () {
@@ -418,9 +430,20 @@
                     $("#banner").animate({top:"-200%"},1000)
                 },7000)
 
+                // clearTimeout(t4)
+                // t4 = setTimeout(function(){
+                //     $("#banner").animate({top:"-300%"},1000)
+                // },9000)
+            
+                clearTimeout(t4)
+                t4 = setTimeout(function(){
+                    $("#banner").animate({top:"-900%"},2000)
+                },9000)
 
             }
 
+            
+            
 
 
 
