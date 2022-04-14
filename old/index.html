@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Rubik:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>Game</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Rubik', sans-serif;
+        font-weight: 800;
+
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right bottom,
+                rgba(116, 130, 206, 0.5),
+                rgba(219, 147, 233, 0.5));
+    }
+
+    .heart {
+        width: 70%;
+        height: 10%;
+        background: linear-gradient(to right bottom,
+                rgba(231, 232, 236, 0.5),
+                rgba(237, 223, 240, 0.5));
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 18px;
+        font-family: 'Rubik', sans-serif;
+        color: rgba(235, 92, 92, 0.8);
+        padding: 10px 0;
+    }
+
+    .msg {
+        color: rgba(50, 40, 40, 0.8);
+        visibility: visible;
+    }
+
+    .msgE {
+        transform: translateY(+55px) scale(1.2);
+        transition: all 1s;
+    }
+
+    .game {
+        width: 70%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background: linear-gradient(to right bottom,
+                rgba(231, 232, 236, 0.5),
+                rgba(237, 223, 240, 0.5));
+        border-radius: 25px;
+        margin-top: 5%;
+    }
+
+    .tittle {
+        width: 90%;
+        text-align: center;
+    }
+
+    .wrap {
+        width: 90%;
+        height: 40%;
+        background: linear-gradient(to right bottom,
+                rgba(177, 70, 62, 0.5),
+                rgba(216, 38, 15, 0.5));
+        border-radius: 25px;
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+    }
+
+    .monitor {
+        width: 90%;
+        background-color: white;
+        height: 80%;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        white-space: pre-line;
+        border-radius: 15px;
+    }
+
+    .buttons {
+        width: 90%;
+        height: 40%;
+        background: linear-gradient(30deg,
+                rgba(33, 120, 192, 0.5),
+                rgba(15, 184, 214, 0.5));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 20px;
+    }
+
+    button {
+        background: rgba(255, 255, 255, 0.8);
+        width: 65%;
+        height: 15%;
+        border-radius: 30px;
+    }
+
+    .wrap a {
+        width: 100px;
+        padding: 10px 20px;
+        border-radius: 25px;
+        background: linear-gradient(to right bottom,
+                rgba(233, 86, 76, 0.5),
+                rgba(216, 38, 15, 0.5));
+        font-size: 14px;
+
+    }
+    .good {
+        text-align: center;
+        display: none;
+    }
+    .bad {
+        text-align: center;
+        display: none;
+        font-size: 14px;
+    }
+    /* button:hover{
+        transform: scale(1.1);
+    } */
+    .return {
+        display: none;
+    }
+    .home {
+        display: none;
+    }
+
+    @media screen and (min-width:528px) {
+        .game {
+            width: 40%;
+            height: 80%;
+        }
+
+        .monitor {
+            height: 75%;
+
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+
+        <div class="heart">
+            <div class="msg" id="msg">請注意本寶寶的心情</div>
+            <div id="hrt"></div>
+        </div>
+
+        <div class="game">
+
+            <div class="tittle">
+                <h2>拯救陳寶寶大作戰</h2>
+            </div>
+            <div class="wrap">
+                <h2>Question</h2>
+                <div class="monitor">
+                    <div id="moni"></div>
+                    <div class="good" id="good">
+                        <h3>你已成功找回本寶寶<br>請你火速打給本寶寶</h3>
+                        <a id="a" href="https://line.me/ti/p/4gdNiq32pV">火速打給本寶寶專線</a>
+                    </div>
+                    <div class="bad" id="bad">
+                        <h3>你已成功失去本寶寶<br>但本寶寶決定<br>再給你一次機會</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn" id="btnA">A</button>
+                <button class="btn" id="btnB">B</button>
+                <button class="btn" id="btnC">C</button>
+                <button class="btn" id="btnD">D</button>
+                <button class="home" id="home">Home</button>
+                <button class="return" id="rbtn">請再給我一次機會</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        // let problems = [
+        //     {
+        //         quest: "邱寶寶為什麼生氣了?\n(A)你沒有理本寶寶\n(B)邱大少有病\n(C)邱大少壞了\n(D)邱寶寶沒有生氣",
+        //         ans: "A"
+        //     },
+        //     {
+        //         quest: "邱寶寶為什麼不打給妳?\n(A)邱寶寶在耍智障\n(B)邱大少有病\n(C)邱大少壞了\n(D)妳沒有打給邱寶寶",
+        //         ans: "D"
+        //     },
+        //     {
+        //         quest: "邱寶寶沒打給你時其實很難受嗎?\n(A)最好是\n(B)怎麼可能\n(C)是的QQ\n(D)邱大少才部會",
+        //         ans: "C"
+        //     }
+        // ]
+
+        let problems = [
+            {
+                quest: "\n陳寶寶有在生氣嗎?\n(A)陳寶寶在睡覺吧\n(B)是的陳寶寶正在生氣\n(C)陳寶寶在刷抖音吧\n(D)陳寶寶在夢遊吧",
+                ans: "B",
+            },
+            {
+                quest: "\n陳寶寶為什麼生氣了?\n(A)你沒有理陳寶寶\n(B)陳寶寶有病\n(C)陳寶寶壞了\n(D)陳寶寶沒有生氣",
+                ans: "A",
+            },
+            {
+                quest: "\n陳寶寶生氣怎麼辦?\n(A)兩半炒雞蛋\n(B)一人分一半\n(C)今天吃涼拌\n(D)趕快跟陳寶寶道歉",
+                ans: "D",
+            },
+            {
+                quest: "\n陳寶寶為什麼不說話了?\n(A)陳寶寶在耍智障\n(B)陳寶寶在生氣\n(C)陳寶寶壞了\n(D)陳寶寶沒有生氣",
+                ans: "B",
+            },
+            {
+                quest: "\n陳寶寶為什麼不打給妳?\n(A)陳寶寶在做夢\n(B)陳寶寶在睡覺\n(C)陳寶寶壞了\n(D)妳沒有打給陳寶寶",
+                ans: "D",
+            },
+            {
+                quest: "\n陳寶寶問你知道錯了嗎?\n(A)陳寶寶才錯了\n(B)邱大少從來都沒有對過\n(C)陳寶寶只會亂生氣\n(D)陳寶寶根本瘋了",
+                ans: "B",
+            },
+            {
+                quest: "\n陳寶寶在想什麼?\n(A)你的錯\n(B)你的錯\n(C)陳寶寶沒有錯\n(D)陳寶寶沒有錯",
+                ans: "ABCD",
+            },
+            {
+                quest: "\n陳寶寶其實一直在等妳嗎?\n(A)最好是\n(B)想太多了\n(C)是的陳寶寶一直在等妳\n(D)怎麼可能",
+                ans: "C",
+            },
+            {
+                quest: "\n陳寶寶問你該怎麼辦?\n(A)點外送給陳寶寶吃\n(B)唱歌給陳寶寶聽\n(C)帶陳寶寶上分\n(D)買蛋糕給陳寶寶吃",
+                ans: "D",
+            },
+            {
+                quest: "\n請珍惜陳寶寶好嗎(只能說好)\n(A)好的\n(B)好的\n(C)好的\n(D)好的",
+                ans: "ABCD"
+            },
+        ]
+
+
+        let monitor = document.getElementById("moni")
+        let btn = document.querySelectorAll(".btn")
+        let rbtn = document.getElementById("rbtn")
+        let hrt = document.getElementById("hrt")
+        let msg = document.getElementById("msg")
+        let good = document.getElementById("good")
+        let bad = document.getElementById("bad")
+        let home = document.getElementById("home")
+
+        let heart = 0
+        let max = problems.length
+        let count = 0
+        let timer
+
+        
+        function dply(elmt,sty,para){
+            elmt.style = sty + ":" + para
+        }
+        
+        function start() {
+            
+            function effect(para) {
+                heart += parseInt(para)
+                hrt.innerHTML = "本寶寶目前心情 " + "(" + heart + ")"
+                msg.innerHTML = "本寶寶心情" + para
+                dply(msg,"visibility","visible")
+                msg.classList.toggle("msgE")
+                timer = setTimeout(function () {
+                    msg.classList.remove("msgE")
+                    dply(msg,"visibility","hidden")
+                }, 1000)
+                count++; start(); return heart, count;
+            }
+
+            if (count < max) {
+                moni.innerHTML = problems[count].quest
+            } else {
+                if (heart >= 80) {
+                    moni.innerHTML = "你得到的分數 " + heart
+                    dply(good,"display","block")
+                    btn.forEach(function (v, i) {
+                        btn[i].style = "display:none"
+                    })
+                    dply(home,"display","block")
+                    dply(rbtn,"display","block")
+                    rbtn.innerHTML = "再玩一次"
+
+                    
+                } else {
+                    moni.innerHTML = "你得到的分數 " + heart
+                    dply(bad,"display","block")
+                    dply(rbtn,"display","block")
+                    rbtn.innerHTML = "請再給我一次機會"
+                    btn.forEach(function (v, i) {
+                        btn[i].style = "display:none"
+                    })
+                }
+            }
+
+            btn.forEach(function (v, i) {
+
+                btn[i].onclick = function () {
+
+                    clearTimeout(timer)
+
+                    if (count == 6 || count == 9) {
+                        effect(" +10")
+                    } else if (this.innerHTML === problems[count].ans) {
+                        effect(" +10")
+                    } else {
+                        effect(" -10")
+                    }
+                }
+            })
+
+            rbtn.onclick = function () {
+                count = 0
+                heart = 0
+                hrt.innerHTML = "再給你一次機會"
+                dply(rbtn,"display","none")
+                dply(bad,"display","none")
+                dply(home,"display","none")
+                dply(good,"display","none")
+                btn.forEach(function (v, i) {
+                    dply(btn[i],"display","block")
+                })
+                start()
+                return count
+            }
+
+        }
+
+
+        start()
+
+    </script>
+
+</body>
+
+</html>

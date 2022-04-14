@@ -8,7 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Rubik:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <title>Game</title>
+    <title>Home</title>
 </head>
 
 <style>
@@ -17,8 +17,7 @@
         padding: 0;
         box-sizing: border-box;
         font-family: 'Rubik', sans-serif;
-        font-weight: 800;
-
+        font-weight: 700;
     }
 
     .container {
@@ -33,9 +32,22 @@
                 rgba(219, 147, 233, 0.5));
     }
 
-    .heart {
+    .game {
         width: 70%;
-        height: 10%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background: linear-gradient(to right bottom,
+                rgba(231, 232, 236, 0.5),
+                rgba(237, 223, 240, 0.5));
+        border-radius: 25px;
+        margin-top: 5%;
+    }
+
+    .heart {
+        width: 85%;
         background: linear-gradient(to right bottom,
                 rgba(231, 232, 236, 0.5),
                 rgba(237, 223, 240, 0.5));
@@ -50,43 +62,39 @@
         padding: 10px 0;
     }
 
-    .msg {
-        color: rgba(50, 40, 40, 0.8);
-        visibility: visible;
+    #hrt {
+        position: initial;
     }
 
-    .msgE {
-        transform: translateY(+55px) scale(1.2);
-        transition: all 1s;
-    }
-
-    .game {
+    #hrt2 {
         width: 70%;
-        height: 80%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        background: linear-gradient(to right bottom,
-                rgba(231, 232, 236, 0.5),
-                rgba(237, 223, 240, 0.5));
+        height: 10px;
+        background: rgba(255, 255, 255, 0.7);
+        margin: 5px 0;
         border-radius: 25px;
-        margin-top: 5%;
+        overflow: hidden;
+        position: relative;
     }
 
-    .tittle {
-        width: 90%;
-        text-align: center;
+    .hrt3 {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right,
+                rgba(50, 88, 239, 0.5),
+                rgba(223, 43, 43, 0.5));
+        border-radius: 25px;
+        position: absolute;
+        transition: all 1s;
+        left: -100%;
     }
 
     .wrap {
         width: 90%;
-        height: 40%;
         background: linear-gradient(to right bottom,
                 rgba(177, 70, 62, 0.5),
-                rgba(216, 38, 15, 0.5));
+                rgba(196, 55, 37, 0.5));
         border-radius: 25px;
-        padding: 10px 0;
+        padding: 20px 0;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -94,69 +102,114 @@
         position: relative;
     }
 
+    .wrap h2 {
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
     .monitor {
         width: 90%;
         background-color: white;
         height: 80%;
-        padding: 10px;
+        padding: 20px 10px;
         font-size: 16px;
         font-weight: 500;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        white-space: pre-line;
         border-radius: 15px;
+        text-align: center;
+    }
+
+    .moni {
+        font-size: 18px;
+        margin-bottom: 5px;
+        letter-spacing: 1px;
+        display: none;
+    }
+
+    .moni2 {
+        line-height: 1.1;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        display: none;
     }
 
     .buttons {
         width: 90%;
-        height: 40%;
+        height: 130px;
         background: linear-gradient(30deg,
                 rgba(33, 120, 192, 0.5),
                 rgba(15, 184, 214, 0.5));
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
         border-radius: 20px;
+        margin-top: -15px;
+        overflow: hidden;
+        position: relative;
     }
 
-    button {
+    .mask {
+        width: 100%;
+        height: 70%;
+        background-color: rgba(214, 225, 228, 0.5);
+        
+    }
+
+    .slider {
+        width: 500%;
+        position: absolute;
+        transition: all 1s;
+        left: 0;
+    }
+
+    .sliderbtn {
+        padding: 20px 0;
+        display: flex;
+    }
+
+    .btn {
         background: rgba(255, 255, 255, 0.8);
-        width: 65%;
-        height: 15%;
-        border-radius: 30px;
+        width: 10%;
+        height: 55px;
+        border-radius: 40px;
+        margin: 0 5%;
+        padding: 8px 0;
+        letter-spacing: 1px;
+        font-size: 14px;
+        color: rgba(10, 18, 70, 0.8);
+        flex-shrink: 0;
     }
 
-    .wrap a {
-        width: 100px;
-        padding: 10px 20px;
-        border-radius: 25px;
-        background: linear-gradient(to right bottom,
-                rgba(233, 86, 76, 0.5),
-                rgba(216, 38, 15, 0.5));
-        font-size: 14px;
+    #return {
+        display: none;
+    }
 
+    .next {
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 10px 15px 10px 15px;
+        border-color: transparent transparent transparent rgba(39, 176, 213, 0.3);;
+        position: absolute;
+        right: 3%; 
     }
-    .good {
-        text-align: center;
+
+    .prev {
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 10px 15px 10px 15px;
+        border-color: transparent rgba(39, 176, 213, 0.3) transparent transparent ;
+        position: absolute;
+        left: 3%;
         display: none;
     }
-    .bad {
-        text-align: center;
-        display: none;
-        font-size: 14px;
-    }
-    /* button:hover{
-        transform: scale(1.1);
-    } */
-    .return {
-        display: none;
-    }
-    .home {
-        display: none;
-    }
+
 
     @media screen and (min-width:528px) {
         .game {
@@ -166,207 +219,218 @@
 
         .monitor {
             height: 75%;
-
         }
     }
+    
 </style>
 
 <body>
     <div class="container">
 
-        <div class="heart">
-            <div class="msg" id="msg">請注意本寶寶的心情</div>
-            <div id="hrt"></div>
-        </div>
 
         <div class="game">
 
-            <div class="tittle">
-                <h2>拯救陳寶寶大作戰</h2>
-            </div>
-            <div class="wrap">
-                <h2>Question</h2>
-                <div class="monitor">
-                    <div id="moni"></div>
-                    <div class="good" id="good">
-                        <h3>你已成功找回本寶寶<br>請你火速打給本寶寶</h3>
-                        <a id="a" href="https://line.me/ti/p/4gdNiq32pV">火速打給本寶寶專線</a>
-                    </div>
-                    <div class="bad" id="bad">
-                        <h3>你已成功失去本寶寶<br>但本寶寶決定<br>再給你一次機會</h3>
-                    </div>
+            <div class="heart">
+
+                <div id="hrt">Days</div>
+                <div id="hrt2">
+                    <div class="hrt3"></div>
                 </div>
+
+            </div>
+
+            <div class="wrap">
+
+                <h2>Question</h2>
+
+                <div class="monitor">
+                    <div class="moni" id="moni"></div>
+                    <div class="moni2" id="moni2"></div>
+                </div>
+
             </div>
 
             <div class="buttons">
-                <button class="btn" id="btnA">A</button>
-                <button class="btn" id="btnB">B</button>
-                <button class="btn" id="btnC">C</button>
-                <button class="btn" id="btnD">D</button>
-                <button class="home" id="home">Home</button>
-                <button class="return" id="rbtn">請再給我一次機會</button>
+
+                <div class="mask" id="mask"></div>
+
+                <div class="slider" id="slider">
+
+                    <div class="sliderbtn" id="sliderbtn">
+                        <button class="btn" id="btnD">Days</button>
+                        <button class="btn" id="btnC">時光機</button>
+                        <button class="btn" id="btnA">陳寶寶大作戰</button>
+                        <button class="btn" id="btnB">邱寶寶大作戰</button>
+                        <button class="btn" id="home">Home</button>
+                    </div>
+
+                </div>
+
+                <div class="next" id="next"></div>
+                <div class="prev" id="prev"></div>
+
             </div>
 
         </div>
     </div>
 
-    <script>
 
-        // let problems = [
-        //     {
-        //         quest: "邱寶寶為什麼生氣了?\n(A)你沒有理本寶寶\n(B)邱大少有病\n(C)邱大少壞了\n(D)邱寶寶沒有生氣",
-        //         ans: "A"
-        //     },
-        //     {
-        //         quest: "邱寶寶為什麼不打給妳?\n(A)邱寶寶在耍智障\n(B)邱大少有病\n(C)邱大少壞了\n(D)妳沒有打給邱寶寶",
-        //         ans: "D"
-        //     },
-        //     {
-        //         quest: "邱寶寶沒打給你時其實很難受嗎?\n(A)最好是\n(B)怎麼可能\n(C)是的QQ\n(D)邱大少才部會",
-        //         ans: "C"
-        //     }
-        // ]
+    <script src="jquery-3.6.0.js"></script>
 
-        let problems = [
+
+    <script type="text/javascript">
+
+
+        let tittleArr = [
+
             {
-                quest: "\n陳寶寶有在生氣嗎?\n(A)陳寶寶在睡覺吧\n(B)是的陳寶寶正在生氣\n(C)陳寶寶在刷抖音吧\n(D)陳寶寶在夢遊吧",
-                ans: "B",
+                tittle: "日記隧道",
+                desc: "青蔥歲月 似歌似妳<br>快打開來看看吧"
             },
             {
-                quest: "\n陳寶寶為什麼生氣了?\n(A)你沒有理陳寶寶\n(B)陳寶寶有病\n(C)陳寶寶壞了\n(D)陳寶寶沒有生氣",
-                ans: "A",
+                tittle: "時光長廊",
+                desc: `時光荏苒 光陰不再<br>快打開來看看吧`
             },
             {
-                quest: "\n陳寶寶生氣怎麼辦?\n(A)兩半炒雞蛋\n(B)一人分一半\n(C)今天吃涼拌\n(D)趕快跟陳寶寶道歉",
-                ans: "D",
+                tittle: "拯救陳寶寶大作戰",
+                desc: `陳寶寶快要爆炸了<br>快來搶救陳寶寶吧`
             },
             {
-                quest: "\n陳寶寶為什麼不說話了?\n(A)陳寶寶在耍智障\n(B)陳寶寶在生氣\n(C)陳寶寶壞了\n(D)陳寶寶沒有生氣",
-                ans: "B",
+                tittle: "拯救邱大少大作戰",
+                desc: `邱大少快要爆炸了<br>快來搶救邱大少吧`
             },
             {
-                quest: "\n陳寶寶為什麼不打給妳?\n(A)陳寶寶在做夢\n(B)陳寶寶在睡覺\n(C)陳寶寶壞了\n(D)妳沒有打給陳寶寶",
-                ans: "D",
+                tittle: "Home",
+                desc: "沒有內容了<br>請點我快速穿梭吧"
             },
-            {
-                quest: "\n陳寶寶問你知道錯了嗎?\n(A)陳寶寶才錯了\n(B)邱大少從來都沒有對過\n(C)陳寶寶只會亂生氣\n(D)陳寶寶根本瘋了",
-                ans: "B",
-            },
-            {
-                quest: "\n陳寶寶在想什麼?\n(A)你的錯\n(B)你的錯\n(C)陳寶寶沒有錯\n(D)陳寶寶沒有錯",
-                ans: "ABCD",
-            },
-            {
-                quest: "\n陳寶寶其實一直在等妳嗎?\n(A)最好是\n(B)想太多了\n(C)是的陳寶寶一直在等妳\n(D)怎麼可能",
-                ans: "C",
-            },
-            {
-                quest: "\n陳寶寶問你該怎麼辦?\n(A)點外送給陳寶寶吃\n(B)唱歌給陳寶寶聽\n(C)帶陳寶寶上分\n(D)買蛋糕給陳寶寶吃",
-                ans: "D",
-            },
-            {
-                quest: "\n請珍惜陳寶寶好嗎(只能說好)\n(A)好的\n(B)好的\n(C)好的\n(D)好的",
-                ans: "ABCD"
-            },
+
         ]
 
 
-        let monitor = document.getElementById("moni")
-        let btn = document.querySelectorAll(".btn")
-        let rbtn = document.getElementById("rbtn")
-        let hrt = document.getElementById("hrt")
-        let msg = document.getElementById("msg")
-        let good = document.getElementById("good")
-        let bad = document.getElementById("bad")
-        let home = document.getElementById("home")
+        // function sty (element,style,para){
+        //     $(`${element}`).css(`${style}`,`${para}`)
+        // }
 
-        let heart = 0
-        let max = problems.length
-        let count = 0
-        let timer
 
-        
-        function dply(elmt,sty,para){
-            elmt.style = sty + ":" + para
-        }
-        
-        function start() {
-            
-            function effect(para) {
-                heart += parseInt(para)
-                hrt.innerHTML = "本寶寶目前心情 " + "(" + heart + ")"
-                msg.innerHTML = "本寶寶心情" + para
-                dply(msg,"visibility","visible")
-                msg.classList.toggle("msgE")
-                timer = setTimeout(function () {
-                    msg.classList.remove("msgE")
-                    dply(msg,"visibility","hidden")
-                }, 1000)
-                count++; start(); return heart, count;
-            }
+        $(document).ready(function () {
 
-            if (count < max) {
-                moni.innerHTML = problems[count].quest
-            } else {
-                if (heart >= 80) {
-                    moni.innerHTML = "你得到的分數 " + heart
-                    dply(good,"display","block")
-                    btn.forEach(function (v, i) {
-                        btn[i].style = "display:none"
-                    })
-                    dply(home,"display","block")
-                    dply(rbtn,"display","block")
-                    rbtn.innerHTML = "再玩一次"
+
+            let max = tittleArr.length
+            let t1, t2, t3
+
+
+            function start() {
+
+                let v = 0
+                let count = 0
+
+                clearTimeout(t1)
+                t1 = setTimeout(function(){
+                    $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
+                },1500) 
+                t2 = setTimeout(function () {
+                    $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
+                }, 3000)
+
+
+                $("#next").click(function () {
+
+                    count++; clearTimeout(t1); clearTimeout(t2);
+
+                    if (count === 4) {
+                        $("#next").slideUp()
+                    } else if (count === 0) {
+                        $(".prev").slideUp()
+                    } else {
+                        $("#next").slideDown()
+                        $("#prev").slideDown()
+                    }
+
+                    $(".slider").css("left", `${v -= 100}%`)
+
+                    $("#moni").html(`${tittleArr[(count - 1)].tittle}`).slideUp("slow")
+
+                    $(".moni2").html(`${tittleArr[(count - 1)].desc}`).slideUp("slow")
 
                     
-                } else {
-                    moni.innerHTML = "你得到的分數 " + heart
-                    dply(bad,"display","block")
-                    dply(rbtn,"display","block")
-                    rbtn.innerHTML = "請再給我一次機會"
-                    btn.forEach(function (v, i) {
-                        btn[i].style = "display:none"
-                    })
-                }
+                    t1 = setTimeout(function () {
+                        $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
+                    }, 1500)
+
+                    t2 = setTimeout(function () {
+                        $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
+                    }, 3000)
+
+                })
+
+                $("#prev").click(function () {
+
+                    count--; clearTimeout(t1); clearTimeout(t2)
+
+                    if (count === 4) {
+                        $("#next").slideUp()
+                    } else if (count === 0) {
+                        $(".prev").slideUp()
+                    } else {
+                        $("#next").slideDown()
+                        $("#prev").slideDown()
+                    }
+
+                    $(".slider").css("left", `${v += 100}%`)
+                    $("#moni").html(`${tittleArr[count + 1].tittle}`).slideUp("slow")
+                    $(".moni2").html(`${tittleArr[(count + 1)].desc}`).slideUp("slow")
+                    t1 = setTimeout(function () {
+                        $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
+                    }, 1500)
+                    t2 = setTimeout(function () {
+                        $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
+                    }, 3000)
+
+                })
+
+                $("#home").click(function () {
+
+                    count = 0; clearTimeout(t1); clearTimeout(t2);
+
+                    if (count === 4) {
+                        $("#next").slideUp()
+                    } else if (count === 0) {
+                        $(".prev").slideUp()
+                        $("#next").slideDown()
+                    } else {
+                        $("#next").slideDown()
+                        $("#prev").slideDown()
+                    }
+
+                    $(".slider").css("left", `${v += 400}%`)
+                    $("#moni").html(`${tittleArr[4].tittle}`).slideUp("slow")
+                    $(".moni2").html(`${tittleArr[(4)].desc}`).slideUp("slow")
+                    t1 = setTimeout(function () {
+                        $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
+                    }, 1500)
+                    t2 = setTimeout(function () {
+                        $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
+                    }, 3000)
+
+
+                })
             }
 
-            btn.forEach(function (v, i) {
-
-                btn[i].onclick = function () {
-
-                    clearTimeout(timer)
-
-                    if (count == 6 || count == 9) {
-                        effect(" +10")
-                    } else if (this.innerHTML === problems[count].ans) {
-                        effect(" +10")
-                    } else {
-                        effect(" -10")
-                    }
-                }
+            $("#btnA").click(function () {
+                $(location).prop("href", "https://zzdx12345.github.io/angryBao/game.html")
             })
 
-            rbtn.onclick = function () {
-                count = 0
-                heart = 0
-                hrt.innerHTML = "再給你一次機會"
-                dply(rbtn,"display","none")
-                dply(bad,"display","none")
-                dply(home,"display","none")
-                dply(good,"display","none")
-                btn.forEach(function (v, i) {
-                    dply(btn[i],"display","block")
-                })
-                start()
-                return count
-            }
+            $("#btnC").click(function(){
+                $(location).prop("href","https://zzdx12345.github.io/angryBao/time.html")
+            })
 
-        }
+            start()
 
+        })
 
-        start()
 
     </script>
+
 
 </body>
 

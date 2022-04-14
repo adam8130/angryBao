@@ -89,7 +89,7 @@
 
     .game {
         width: 70%;
-        height: 60%;
+        height: 65%;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -144,6 +144,7 @@
 
     .moni {
         display: none;
+        padding: 10px 0;
     }
 
     .buttons {
@@ -162,9 +163,9 @@
     .buttons button {
         background: rgba(255, 255, 255, 0.8);
         width: 90%;
-        height: 20%;
+        /* height: 20%; */
         border-radius: 40px;
-        margin: 5px 0;
+        margin: 3px 0;
         padding: 8px 5px;
         letter-spacing: 1px;
         font-size: 14px;
@@ -428,9 +429,28 @@
             let max = problems.length
             let heart = 0
             let addhrt = -100
-            let t1, t2, t3, t4
+            let t1, t2, t3, t4, t5, t6
 
 
+
+            function start0() {
+
+                clearTimeout(t1);
+                t1 = setTimeout(function () {
+                    $("#moni").html("Are You Ready?").slideDown()
+                    // $("#btn").slideDown()
+                }, 1500)
+
+                clearTimeout(t2);
+                t2 = setTimeout(function () {
+                    $("#moni").slideUp()
+                }, 3500)
+
+                setTimeout(function(){
+                    start()
+                },3000)
+
+            }
 
             function start() {
 
@@ -440,28 +460,32 @@
                     //     btn.html(`${problems[count].c1}`)
                     // })
                     // $("#moni").html(`Q${count+1}`)
-                    setTimeout(function () {
+
+                    clearTimeout(t3);
+                    t3 = setTimeout(function () {
                         $("#moni").html(`${problems[count].num}`).slideDown()
                         $("#btn").slideDown()
-                    }, 1500)
+                    }, 2000)
 
-                    setTimeout(function () {
-                        $("#moni").html(`${problems[count].num}`).slideUp(600)
-                        $("#btnA").html(`${problems[count].c1}`).slideUp(600)
-                        $("#btnB").html(`${problems[count].c2}`).slideUp(600)
-                        $("#btnC").html(`${problems[count].c3}`).slideUp(600)
-                        $("#btnD").html(`${problems[count].c4}`).slideUp(600)
+                    clearTimeout(t4);
+                    t4 = setTimeout(function () {
+                        $("#moni").html(`${problems[count].num}`).slideUp()
+                        $("#btnA").html(`${problems[count].c1}`).slideUp(1000)
+                        $("#btnB").html(`${problems[count].c2}`).slideUp(1000)
+                        $("#btnC").html(`${problems[count].c3}`).slideUp(1000)
+                        $("#btnD").html(`${problems[count].c4}`).slideUp(1000)
                         // $("#buttons").animate({height:"100px"})
-                    }, 3000)
+                    }, 3500)
 
-                    setTimeout(function () {
+                    clearTimeout(t5)
+                    t5 = setTimeout(function () {
                         $("#moni").html(`${problems[count].quest}`).slideDown()
                         $("#btnA").html(`${problems[count].c1}`).slideDown()
                         $("#btnB").html(`${problems[count].c2}`).slideDown()
                         $("#btnC").html(`${problems[count].c3}`).slideDown()
                         $("#btnD").html(`${problems[count].c4}`).slideDown()
                         // $("#buttons").animate({height:"40%"})
-                    }, 4000)
+                    }, 4500)
 
                 } else {
 
@@ -472,30 +496,30 @@
 
                         clearTimeout(t1)
                         t1 = setTimeout(function () {
-                            $("#moni").html(`你得到的分數 ${heart} 分`).slideDown()
-                            $(".buttons").css("padding", "20px").slideDown()
+                            $("#moni").html(`你得到的分數 ${heart} 分`).slideDown(600)
+                            $(".buttons").css("padding", "20px").slideDown(1000)
                         }, 2000)
 
                         clearTimeout(t2)
                         t2 = setTimeout(function () {
                             $(".good").slideDown()
-                            $("#rbtn").css("height", "40px").fadeIn()
+                            $("#rbtn").css("height", "40px").fadeIn(1000)
                                 .html("再玩一次")
-                            $("#home").css("height", "40px").fadeIn()
+                            $("#home").css("height", "40px").fadeIn(1000)
                         }, 4000)
 
                     } else {
 
                         clearTimeout(t1)
                         t1 = setTimeout(function () {
-                            $("#moni").html(`你得到的分數 ${heart} 分`).slideDown()
-                            $(".buttons").css("padding", "20px").slideDown()
+                            $("#moni").html(`你得到的分數 ${heart} 分`).slideDown(600)
+                            $(".buttons").css("padding", "20px").slideDown(1000)
                         }, 2000)
 
                         clearTimeout(t2)
                         t2 = setTimeout(function () {
-                            $(".bad").slideDown()
-                            $("#rbtn").css("height", "40px").fadeIn()
+                            $(".bad").slideDown(1000)
+                            $("#rbtn").css("height", "40px").fadeIn(1000)
                         }, 4000)
                     }
                 }
@@ -504,7 +528,7 @@
 
 
             function result(para) {
-
+                
                 if (para === "+10") {
                     heart += parseInt(para)
                     $("#hrt").html(`本寶寶目前心情指數 ${heart}`)
@@ -519,10 +543,10 @@
 
                 $("#msg").html(`本寶寶心情 ${para}`).addClass("msgE").css("visibility", "visible")
 
-                t3 = setTimeout(function () {
+                t6 = setTimeout(function () {
                     $("#msg").css("visibility", "hidden").css
-                        ("position", "absolute").toggleClass("msgE")
-                }, 1000)
+                        ("position", "absolute").removeClass("msgE")
+                }, 1200)
 
                 start()
                 return heart
@@ -532,13 +556,13 @@
 
             $(".btn").click(function () {
 
-                count++; clearTimeout(t3)
+                count++; clearTimeout(t6)
                 $(".msg").css("color", "rgba(14, 100, 186, 0.8)")
-                $("#moni").slideUp(600)
-                $("#btnA").html(`${problems[count-1].c1}`).slideUp(600)
-                $("#btnB").html(`${problems[count-1].c2}`).slideUp(600)
-                $("#btnC").html(`${problems[count-1].c3}`).slideUp(600)
-                $("#btnD").html(`${problems[count-1].c4}`).slideUp(600)
+                $("#moni").slideUp(1000)
+                $("#btnA").html(`${problems[count - 1].c1}`).slideUp(1000)
+                $("#btnB").html(`${problems[count - 1].c2}`).slideUp(1000)
+                $("#btnC").html(`${problems[count - 1].c3}`).slideUp(1000)
+                $("#btnD").html(`${problems[count - 1].c4}`).slideUp(1000)
 
                 if (count === 7 || count === 10) {
                     addhrt += 10
@@ -574,15 +598,15 @@
                 $(".btn").slideUp()
                 $("#rbtn").fadeOut()
                 $("#home").fadeOut()
-                start()
+                start0()
             })
 
 
             $("#home").click(function () {
-                $(location).prop("href", "https://zzdx12345.github.io/angryBao/home.html")
+                $(location).prop("href", "https://zzdx12345.github.io/angryBao/")
             })
 
-            start()
+            start0()
         })
 
 
