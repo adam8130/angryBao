@@ -306,6 +306,7 @@
 
 
     <script src="jquery-3.6.0.js"></script>
+    <!-- <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script> -->
 
 
     <script type="text/javascript">
@@ -379,21 +380,22 @@
 
                 $("#moni").slideUp()
                 $("#moni2").slideUp()
+                $(".btn").slideUp()
 
 
                 clearTimeout(t1)
                 t1 = setTimeout(function () {
-                    $(".btn").fadeOut(800)
-                    $("#buttons").animate({height:"0",padding:"10px"},800)
                     $("#firstImg").css({ "width": "95%", "height": "200px", "background-image": `url(${imgArr[0]})` }).slideDown(1000)
+                    // $(".btn").fadeOut(1200)
+                    $("#buttons").animate({height:"0",padding:"10px"},1200)
+
                 }, 1000)
 
 
                 clearTimeout(t2)
                 t2 = setTimeout(function () {
-                    
-                    $(".buttons").slideUp(1200)
-                    $(".heart").slideUp(1200)
+                    $(".buttons").slideUp(1400)
+                    $(".heart").slideUp(1400)
 
                 }, 3000)
 
@@ -402,12 +404,14 @@
                 t3 = setTimeout(function () {
                     $("#monitor").animate({ height: "280px" }, 1000)
                     $("#firstImg").css("background-image", `url(${imgArr[0]})`).fadeOut(1000)
+
                 }, 5000)
 
 
                 clearTimeout(t4)
                 t4 = setTimeout(function () {
                     $("#firstImg").css({ "height": "280px", "background-image": `url(${imgArr[1]})` }).slideDown(1000)
+                    
                 }, 6000)
 
 
@@ -424,6 +428,8 @@
 
                 $("#firstImg").css("background-image", `url(${imgArr[1]})`).fadeOut(1500)
                 $(".game").animate({ width: "90%" })
+                // $("#monitor").animate({ backgroundColor:"rgb(255,255,255,0.7 )"})
+                $("#monitor").css("background-color","rgb(255,255,255,0.75 )")
                 
 
                 clearTimeout(t1)
