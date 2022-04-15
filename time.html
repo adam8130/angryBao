@@ -126,8 +126,8 @@
     }
 
     .banner {
-        height: 1000%;
-        width: 90%;
+        height: 2200%;
+        width: 80%;
         position: absolute;
         top: 0px;
         display: none;
@@ -148,9 +148,30 @@
         background-size: cover;
         background-position: center center;
         width: 90%;
-        height: 250px;
-        margin: 15px 0;
+        height: 240px;
+        margin: 20px 0;
         flex-shrink: 0;
+    }
+
+    .imgmask {
+        width: 90%;
+        height: 2400%;
+        background-color: rgba(5, 5, 5, 0.7);
+        z-index: 200;
+        display: none;
+        position: absolute;
+    }
+
+    /* .smooth2{
+        position: absolute;
+        transform: translateY(-87.5%);
+        transition: all 2s;
+    } */
+
+    .smooth {
+        position: absolute;
+        transform: translateY(-9.1%);
+        transition: all 2s;
     }
 
     .moni {
@@ -262,18 +283,31 @@
                     <div class="banner" id="banner">
 
                         <div class="bannerarr" id="bannerarr">
-
-                            <img src="time/time-03.JPG" class="img" id="img">
-                            <img src="time/time-04.JPG" class="img" id="img">
-                            <img src="time/time-05.JPG" class="img" id="img">
-                            <img src="time/time-06.PNG" class="img" id="img">
-                            <img src="time/time-07.JPG" class="img" id="img">
-                            <img src="time/time-08.JPG" class="img" id="img">
-                            <img src="time/time-09.JPG" class="img" id="img">
-                            <img src="time/time-10.JPG" class="img" id="img">
-                            <img src="time/time-11.JPG" class="img" id="img">
-                            <img src="time/time-12.JPG" class="img" id="img">
-
+                            <div class="imgmask"></div>
+                            <img src="time-img/img03.JPG" class="img" id="img">
+                            <img src="time-img/img04.JPG" class="img" id="img">
+                            <img src="time-img/img05.JPG" class="img" id="img">
+                            <img src="time-img/img06.JPG" class="img" id="img">
+                            <img src="time-img/img07.JPG" class="img" id="img">
+                            <img src="time-img/img08.JPG" class="img" id="img">
+                            <img src="time-img/img10.JPEG" class="img" id="img">
+                            <img src="time-img/img09.JPEG" class="img" id="img">
+                            <img src="time-img/img11.JPEG" class="img" id="img">
+                            <img src="time-img/img12.JPG" class="img" id="img">
+                            <img src="time-img/img13.JPG" class="img" id="img">
+                            <img src="time-img/img14.JPG" class="img" id="img">
+                            <img src="time-img/img15.JPG" class="img" id="img">
+                            <img src="time-img/img16.JPG" class="img" id="img">
+                            <img src="time-img/img17.PNG" class="img" id="img">
+                            <img src="time-img/img18.JPEG" class="img" id="img">
+                            <img src="time-img/img19.PNG" class="img" id="img">
+                            <img src="time-img/img20.JPG" class="img" id="img">
+                            <img src="time-img/img21.JPG" class="img" id="img">
+                            <img src="time-img/img26.JPG" class="img" id="img">
+                            <img src="time-img/img22.JPG" class="img" id="img">
+                            <img src="time-img/img23.JPEG" class="img" id="img">
+                            <!-- <img src="time-img/img25.JPG" class="img" id="img">
+                            <img src="time-img/img24.JPG" class="img" id="img"> -->
 
                         </div>
 
@@ -332,18 +366,8 @@
 
         let imgArr = [
 
-            "time/time-01.JPG",
-            "time/time-02.JPG",
-            "time/time-03.JPG",
-            "time/time-04.JPG",
-            "time/time-05.JPG",
-            "time/time-06.JPG",
-            "time/time-07.JPG",
-            "time/time-08.JPG",
-            "time/time-09.JPG",
-            "time/time-10.JPG",
-            "time/time-11.JPG",
-            "time/time-12.JPG",
+            "time-img/img01.JPG",
+            "time-img/img02.JPG",
 
         ]
 
@@ -352,7 +376,7 @@
 
 
             let max = tittleArr.length
-            let t1, t2, t3, t4, t5
+            let t1, t2, t3, t4, t5, t6
 
 
             function start() {
@@ -360,7 +384,7 @@
                 let v = 0
                 let count = 0
 
-                clearTimeout(t1); clearTimeout(t2)
+
                 t1 = setTimeout(function () {
                     $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
                 }, 1500)
@@ -369,10 +393,10 @@
                     $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
                 }, 3000)
 
-                t3 = setTimeout(function (){
-                    $("#buttons").animate({height:"120px",padding:"0"},1000)
+                t3 = setTimeout(function () {
+                    $("#buttons").animate({ height: "120px", padding: "0" }, 1000)
                     $(".btn").slideDown(1000)
-                },4000)
+                }, 4000)
             }
 
 
@@ -381,18 +405,17 @@
                 $("#moni").slideUp()
                 $("#moni2").slideUp()
                 $(".btn").slideUp()
+                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3)
 
 
-                clearTimeout(t1)
                 t1 = setTimeout(function () {
                     $("#firstImg").css({ "width": "95%", "height": "200px", "background-image": `url(${imgArr[0]})` }).slideDown(1000)
-                    // $(".btn").fadeOut(1200)
-                    $("#buttons").animate({height:"0",padding:"10px"},1200)
+                    $("#buttons").animate({ height: "0", padding: "10px" }, 1200)
 
                 }, 1000)
 
 
-                clearTimeout(t2)
+
                 t2 = setTimeout(function () {
                     $(".buttons").slideUp(1400)
                     $(".heart").slideUp(1400)
@@ -400,7 +423,7 @@
                 }, 3000)
 
 
-                clearTimeout(t3)
+
                 t3 = setTimeout(function () {
                     $("#monitor").animate({ height: "280px" }, 1000)
                     $("#firstImg").css("background-image", `url(${imgArr[0]})`).fadeOut(1000)
@@ -408,14 +431,14 @@
                 }, 5000)
 
 
-                clearTimeout(t4)
+
                 t4 = setTimeout(function () {
                     $("#firstImg").css({ "height": "280px", "background-image": `url(${imgArr[1]})` }).slideDown(1000)
-                    
+
                 }, 6000)
 
 
-                clearTimeout(t5)
+
                 t5 = setTimeout(function () {
                     start2()
                 }, 9000)
@@ -424,38 +447,50 @@
 
             function start2() {
 
-                x = 0
-
+                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+                clearTimeout(t4); clearTimeout(t5)
                 $("#firstImg").css("background-image", `url(${imgArr[1]})`).fadeOut(1500)
                 $(".game").animate({ width: "90%" })
-                // $("#monitor").animate({ backgroundColor:"rgb(255,255,255,0.7 )"})
-                $("#monitor").css("background-color","rgb(255,255,255,0.75 )")
-                
 
-                clearTimeout(t1)
+
+
                 t1 = setTimeout(function () {
                     $("#banner").fadeIn(1500)
                 }, 1000)
 
-                clearTimeout(t2)
+
+
                 t2 = setTimeout(function () {
-                    $("#banner").animate({ top: `${x-=100}%` }, 1500)
+                    // $("#banner").addClass("smooth")
+                    // $("#banner").css("top","-100%")
+                    $("#banner").addClass("smooth")
                 }, 4000)
 
-                clearTimeout(t3)
+
                 t3 = setTimeout(function () {
-                    $("#banner").animate({ top: `${x-=100}%` }, 1500)
+                    // $(".smooth").css({ "transform": "translateY(-12.5%)"})
+                    $(".smooth").css("transform", "translateY(-31.8%)")
                 }, 7000)
 
-                clearTimeout(t4)
-                t4 = setTimeout(function () {
-                    $("#banner").animate({ top: `${x-=700}%` }, 1500)
-                }, 10000)
 
-                clearTimeout(t5)
-                t5 = setTimeout(function () {
-                    start3()
+                t4 = setTimeout(function () {
+                    // $("#banner").animate({ top: "-2300%" }, 5000)
+                    // $("#banner").removeClass("smooth2")
+                    // $(".smooth2").css("display","none")
+                    // $("#banner").addClass("smooth")
+                    $(".smooth").css({ "transform": "translateY(-86.35%)", "transition": "all 7s" })
+
                 }, 11000)
+
+
+                t5 = setTimeout(function () {
+                    $(".imgmask").fadeIn(1500).fadeOut(5000)
+                }, 11000)
+
+
+                t6 = setTimeout(function () {
+                    start3()
+                }, 12000)
 
                 // clearTimeout(t1)
                 // t1 = setTimeout(function () {
@@ -487,27 +522,61 @@
 
             function start3() {
 
-                clearTimeout(t1)
+                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+                clearTimeout(t4); clearTimeout(t5); clearTimeout(t6)
+
+
                 t1 = setTimeout(function () {
-                    $("#banner").animate({ top: "-800%" }, 1500)
-                }, 2000)
+                    $(".smooth").css({ "transform": "translateY(-77.28%)", "transition": "all 2s" })
+                    // $("#banner").animate({ top: "-1900%" }, 1500)
+                }, 7500)
 
-                clearTimeout(t2)
+
                 t2 = setTimeout(function () {
-                    $("#banner").animate({ top: "-700%" }, 1500)
-                }, 4000)
+                    $(".smooth").css({ "transform": "translateY(-54.5%)" })
+                    // $("#banner").animate({ top: "-1200%" }, 1500)
+                }, 10000)
 
-                clearTimeout(t3)
+
                 t3 = setTimeout(function () {
-                    $("#banner").animate({ top: "-600%" }, 1500)
-                }, 6500)
+                    $(".smooth").css({ "transform": "translateY(-50%)" })
+                    // $("#banner").animate({ top: "-1100%" }, 1500)
+                }, 13000)
 
-            
+                t4 = setTimeout(function () {
+                    start4()
+
+                }, 15000)
+
             }
-            
 
 
+            function start4() {
 
+                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+                clearTimeout(t4); 
+
+
+                t1 = setTimeout(function () {
+                    $(".img").animate({height:"210px"},1000)
+                    $("#monitor").animate({ height: "250px" }, 1000)
+                    $(".game").animate({ width: "80%"},1000)
+                }, 500)
+
+                t2 = setTimeout(function () {
+                    $("#buttons").animate({ padding: "20px" }, 700)
+                    $(".buttons").animate({height:"100px"},1000)
+                    $(".mask").css("display", "none")
+                    $(".buttons").slideDown(1000)
+                    $("#home").slideDown(1400)
+                }, 1000)
+
+            }
+
+
+            $("#home").click(function () {
+                $(location).prop("href", "https://zzdx12345.github.io/angryBao/")
+            })
 
 
             start()
