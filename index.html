@@ -131,7 +131,7 @@
     }
 
     .moni2 {
-        line-height: 1.1;
+        line-height: 1.2;
         font-size: 16px;
         font-weight: 500;
         letter-spacing: 1px;
@@ -157,7 +157,7 @@
         width: 100%;
         height: 70%;
         background-color: rgba(214, 225, 228, 0.5);
-        
+
     }
 
     .slider {
@@ -194,9 +194,10 @@
         height: 0px;
         border-style: solid;
         border-width: 10px 15px 10px 15px;
-        border-color: transparent transparent transparent rgba(39, 176, 213, 0.3);;
+        border-color: transparent transparent transparent rgba(39, 176, 213, 0.3);
+        ;
         position: absolute;
-        right: 3%; 
+        right: 3%;
     }
 
     .prev {
@@ -204,7 +205,7 @@
         height: 0px;
         border-style: solid;
         border-width: 10px 15px 10px 15px;
-        border-color: transparent rgba(39, 176, 213, 0.3) transparent transparent ;
+        border-color: transparent rgba(39, 176, 213, 0.3) transparent transparent;
         position: absolute;
         left: 3%;
         display: none;
@@ -221,7 +222,6 @@
             height: 75%;
         }
     }
-    
 </style>
 
 <body>
@@ -257,10 +257,10 @@
                 <div class="slider" id="slider">
 
                     <div class="sliderbtn" id="sliderbtn">
-                        <button class="btn" id="btnD">Days</button>
-                        <button class="btn" id="btnC">時光機</button>
-                        <button class="btn" id="btnA">陳寶寶大作戰</button>
-                        <button class="btn" id="btnB">邱寶寶大作戰</button>
+                        <button class="btn" id="btnA">Days</button>
+                        <button class="btn" id="btnB">時光機</button>
+                        <button class="btn" id="btnC">陳寶寶大作戰</button>
+                        <button class="btn" id="btnD">邱寶寶大作戰</button>
                         <button class="btn" id="home">Home</button>
                     </div>
 
@@ -325,9 +325,9 @@
                 let count = 0
 
                 clearTimeout(t1)
-                t1 = setTimeout(function(){
+                t1 = setTimeout(function () {
                     $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
-                },1500) 
+                }, 1500)
                 t2 = setTimeout(function () {
                     $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
                 }, 3000)
@@ -352,7 +352,7 @@
 
                     $(".moni2").html(`${tittleArr[(count - 1)].desc}`).slideUp("slow")
 
-                    
+
                     t1 = setTimeout(function () {
                         $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
                     }, 1500)
@@ -417,12 +417,17 @@
             }
 
             $("#btnA").click(function () {
-                $(location).prop("href", "https://zzdx12345.github.io/angryBao/game.html")
+                location.href = ("days.html")
             })
 
-            $("#btnC").click(function(){
-                $(location).prop("href","https://zzdx12345.github.io/angryBao/time.html")
+            $("#btnB").click(function () {
+                location.href = ("time.html")
             })
+
+            $("#btnC").click(function () {
+                location.href = ("game.html")
+            })
+
 
             start()
 

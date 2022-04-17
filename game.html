@@ -210,6 +210,10 @@
         /* visibility: hidden; */
     }
 
+    .start {
+        display: none;
+    }
+
     @media screen and (min-width:528px) {
         .game {
             width: 40%;
@@ -260,6 +264,7 @@
                 <button class="btn" id="btnB">B</button>
                 <button class="btn" id="btnC">C</button>
                 <button class="btn" id="btnD">D</button>
+                <button class="start" id="start">Start</button>
                 <button class="home" id="home">Home</button>
                 <button class="return" id="rbtn">請再給我一次機會</button>
             </div>
@@ -422,38 +427,40 @@
 
         ]
 
+
         $(document).ready(function () {
 
 
-            let count = 0
+            let count = 9
             let max = problems.length
             let heart = 0
             let addhrt = -100
             let t1, t2, t3, t4, t5, t6
-
+            let timeOut = () => {
+                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+                clearTimeout(t4); clearTimeout(t5);
+            }
 
 
             function start0() {
 
-                clearTimeout(t1);
                 t1 = setTimeout(function () {
                     $("#moni").html("Are You Ready?").slideDown()
-                    // $("#btn").slideDown()
                 }, 1500)
 
-                clearTimeout(t2);
                 t2 = setTimeout(function () {
-                    $("#moni").slideUp()
-                }, 3500)
-
-                setTimeout(function(){
-                    start()
-                },3000)
+                    $("#start").css({ width: "80%", height: "50px" })
+                    $("#start").slideDown(1000)
+                    $(".buttons").css("padding", "20px")
+                }, 3000)
 
             }
 
+
+
             function start() {
 
+                timeOut()
                 if (count < max) {
 
                     // $.each(btn,function(i,v){
@@ -461,31 +468,27 @@
                     // })
                     // $("#moni").html(`Q${count+1}`)
 
-                    clearTimeout(t3);
-                    t3 = setTimeout(function () {
+                    t1 = setTimeout(function () {
                         $("#moni").html(`${problems[count].num}`).slideDown()
                         $("#btn").slideDown()
                     }, 2000)
 
-                    clearTimeout(t4);
-                    t4 = setTimeout(function () {
+                    t2 = setTimeout(function () {
                         $("#moni").html(`${problems[count].num}`).slideUp()
                         $("#btnA").html(`${problems[count].c1}`).slideUp(1000)
                         $("#btnB").html(`${problems[count].c2}`).slideUp(1000)
                         $("#btnC").html(`${problems[count].c3}`).slideUp(1000)
                         $("#btnD").html(`${problems[count].c4}`).slideUp(1000)
-                        // $("#buttons").animate({height:"100px"})
                     }, 3500)
 
-                    clearTimeout(t5)
-                    t5 = setTimeout(function () {
+                    t3 = setTimeout(function () {
                         $("#moni").html(`${problems[count].quest}`).slideDown()
                         $("#btnA").html(`${problems[count].c1}`).slideDown()
                         $("#btnB").html(`${problems[count].c2}`).slideDown()
                         $("#btnC").html(`${problems[count].c3}`).slideDown()
                         $("#btnD").html(`${problems[count].c4}`).slideDown()
-                        // $("#buttons").animate({height:"40%"})
                     }, 4500)
+
 
                 } else {
 
@@ -494,15 +497,14 @@
 
                     if (heart >= 70) {
 
-                        clearTimeout(t1)
                         t1 = setTimeout(function () {
                             $("#moni").html(`你得到的分數 ${heart} 分`).slideDown(600)
                             $(".buttons").css("padding", "20px").slideDown(1000)
                         }, 2000)
 
-                        clearTimeout(t2)
                         t2 = setTimeout(function () {
-                            $(".good").slideDown()
+
+                            $(".good").slideDown(1000)
                             $("#rbtn").css("height", "40px").fadeIn(1000)
                                 .html("再玩一次")
                             $("#home").css("height", "40px").fadeIn(1000)
@@ -510,13 +512,11 @@
 
                     } else {
 
-                        clearTimeout(t1)
                         t1 = setTimeout(function () {
                             $("#moni").html(`你得到的分數 ${heart} 分`).slideDown(600)
                             $(".buttons").css("padding", "20px").slideDown(1000)
                         }, 2000)
 
-                        clearTimeout(t2)
                         t2 = setTimeout(function () {
                             $(".bad").slideDown(1000)
                             $("#rbtn").css("height", "40px").fadeIn(1000)
@@ -528,7 +528,8 @@
 
 
             function result(para) {
-                
+
+                clearTimeout(t6);
                 if (para === "+10") {
                     heart += parseInt(para)
                     $("#hrt").html(`本寶寶目前心情指數 ${heart}`)
@@ -556,7 +557,8 @@
 
             $(".btn").click(function () {
 
-                count++; clearTimeout(t6)
+                timeOut()
+                count++;
                 $(".msg").css("color", "rgba(14, 100, 186, 0.8)")
                 $("#moni").slideUp(1000)
                 $("#btnA").html(`${problems[count - 1].c1}`).slideUp(1000)
@@ -586,30 +588,76 @@
             })
 
 
+            $("#start").click(function () {
+
+                timeOut()
+                $("#start").slideUp(500)
+                $(".buttons").css("padding", "8px")
+
+                t1 = setTimeout(() => {
+                    $("#moni").slideUp(500)
+                }, 1000)
+
+                t2 = setTimeout(() => {
+                    start()
+
+                }, 1000)
+
+            })
+
 
             $("#rbtn").click(function () {
+
+                timeOut
                 count = 0; heart = 0; addhrt = -100;
                 $("#moni").slideUp(600)
                 $("#hrt").html("請最好謹慎作答")
                 $(".hrt3").css("left", `${addhrt}%`)
-                $(".bad").slideUp()
-                $(".good").slideUp()
-                $(".buttons").css("padding", "8px").slideDown()
-                $(".btn").slideUp()
-                $("#rbtn").fadeOut()
-                $("#home").fadeOut()
+                $(".bad").slideUp(600)
+                $(".good").slideUp(600)
+                $(".buttons").css("padding", "10px")
+                $(".btn").slideUp(600)
+                $("#rbtn").fadeOut(600)
+                $("#home").fadeOut(600)
                 start0()
             })
 
 
             $("#home").click(function () {
-                $(location).prop("href", "https://zzdx12345.github.io/angryBao/")
+                location.href = ("index.html")
             })
 
             start0()
         })
 
+        ////////////
 
+        // let a = [], b = [], c = [], d = []
+
+        // for (i = 0; i < problems.length; i++) {
+
+        //     a.push(problems[i].c1)
+        //     b.push(problems[i].c2)
+        //     c.push(problems[i].c3)
+        //     d.push(problems[i].c4)
+            
+        //     if(i == 9){
+        //         arry = [a,b,c,d]
+        //     }
+            
+        //     console.log(arry)
+        // }
+
+
+        // function fn() {
+        //     count++
+        //     $("#moni").html(`${problems[count - 1].quest}`).slideDown()
+        //     $(".btn").slideDown()
+        //     let btn = document.querySelectorAll(".btn")
+        //     for (i = 0; i < btn.length; i++) {
+        //         btn[i].innerHTML = arry[count][i]
+        //     }
+        // }
 
 
     </script>

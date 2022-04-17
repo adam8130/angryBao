@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Rubik:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>Days</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Rubik', sans-serif;
+        font-weight: 700;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right bottom,
+                rgba(116, 130, 206, 0.5),
+                rgba(219, 147, 233, 0.5));
+    }
+
+    .game {
+        width: 70%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background: linear-gradient(to right bottom,
+                rgba(231, 232, 236, 0.5),
+                rgba(237, 223, 240, 0.5));
+        border-radius: 25px;
+        margin-top: 5%;
+    }
+
+    .heart {
+        width: 85%;
+        background: linear-gradient(to right bottom,
+                rgba(231, 232, 236, 0.5),
+                rgba(237, 223, 240, 0.5));
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 18px;
+        font-family: 'Rubik', sans-serif;
+        color: rgba(235, 92, 92, 0.8);
+        padding: 10px 0;
+    }
+
+    #hrt {
+        position: initial;
+    }
+
+    #hrt2 {
+        width: 70%;
+        height: 10px;
+        background: rgba(255, 255, 255, 0.7);
+        margin: 5px 0;
+        border-radius: 25px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .hrt3 {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right,
+                rgba(50, 88, 239, 0.5),
+                rgba(223, 43, 43, 0.5));
+        border-radius: 25px;
+        position: absolute;
+        transition: all 1s;
+        left: -100%;
+    }
+
+    .wrap {
+        width: 90%;
+        background: linear-gradient(to right bottom,
+                rgba(177, 70, 62, 0.5),
+                rgba(196, 55, 37, 0.5));
+        border-radius: 25px;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+    }
+
+    .wrap h2 {
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .monitor {
+        width: 90%;
+        background-color: white;
+        height: 80%;
+        padding: 20px 10px;
+        font-size: 16px;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .moni {
+        font-size: 18px;
+        margin-bottom: 5px;
+        letter-spacing: 1px;
+        display: none;
+    }
+
+    .moni2 {
+        line-height: 1.2;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        display: none;
+    }
+
+    .buttons {
+        width: 90%;
+        /* height: 120px; */
+        padding: 10px 0;
+        background: linear-gradient(30deg,
+                rgba(33, 120, 192, 0.5),
+                rgba(15, 184, 214, 0.5));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .mask {
+        width: 100%;
+        height: 70%;
+        background-color: rgba(214, 225, 228, 0.5);
+
+    }
+
+    .slider {
+        width: 500%;
+        position: absolute;
+        transition: all 1s;
+        left: 0;
+    }
+
+    .sliderbtn {
+        padding: 20px 0;
+        display: flex;
+    }
+
+    .btn {
+        background: rgba(255, 255, 255, 0.8);
+        width: 10%;
+        height: 55px;
+        border-radius: 40px;
+        margin: 0 5%;
+        padding: 8px 0;
+        letter-spacing: 1px;
+        font-size: 14px;
+        color: rgba(10, 18, 70, 0.8);
+        flex-shrink: 0;
+        display: none;
+    }
+
+    #return {
+        display: none;
+    }
+
+    .rbtn {
+        background: rgba(255, 255, 255, 0.8);
+        width: 10%;
+        height: 55px;
+        border-radius: 40px;
+        margin: 0 5%;
+        padding: 8px 0;
+        letter-spacing: 1px;
+        font-size: 14px;
+        color: rgba(10, 18, 70, 0.8);
+        flex-shrink: 0;
+        display: none;
+    }
+
+    .next {
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 10px 15px 10px 15px;
+        border-color: transparent transparent transparent rgba(39, 176, 213, 0.3);
+        ;
+        position: absolute;
+        right: 3%;
+        display: none;
+    }
+
+    .prev {
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 10px 15px 10px 15px;
+        border-color: transparent rgba(39, 176, 213, 0.3) transparent transparent;
+        position: absolute;
+        left: 3%;
+        display: none;
+    }
+
+
+    @media screen and (min-width:528px) {
+        .game {
+            width: 40%;
+            height: 80%;
+        }
+
+        .monitor {
+            height: 75%;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+
+
+        <div class="game" id="game">
+
+            <div class="heart">
+
+                <div id="hrt">Days</div>
+                <div id="hrt2">
+                    <div class="hrt3"></div>
+                </div>
+
+            </div>
+
+            <div class="wrap">
+
+                <h2>Welcome</h2>
+
+                <div class="monitor" id="monitor">
+                    <div class="moni" id="moni"></div>
+                    <div class="moni2" id="moni2"></div>
+                </div>
+
+            </div>
+
+            <div class="buttons" id="buttons">
+
+                <div class="mask" id="mask"></div>
+
+                <div class="slider" id="slider">
+
+                    <div class="sliderbtn" id="sliderbtn">
+                        <button class="rbtn" id="rbtn">返回</button>
+                        <button class="btn" id="btnA">Days</button>
+                        <button class="btn" id="btnB">里程碑</button>
+                        <button class="btn" id="home">Home</button>
+                    </div>
+
+                </div>
+
+                <div class="next" id="next"></div>
+                <div class="prev" id="prev"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="jquery-3.6.0.js"></script>
+
+
+    <script type="text/javascript">
+
+
+        let tittleArr = [
+
+            {
+                tittle: "歡迎來到日記隧道",
+                desc: "準備好的話<br>請按下開始吧"
+            },
+            {
+                tittle: "歡迎來到里程碑",
+                desc: `準備好的話<br>請按下開始吧`
+            },
+            {
+                tittle: "Home",
+                desc: "想要返回的話<br>請點我快速穿梭吧"
+            },
+
+        ]
+
+
+        $(document).ready(function () {
+
+
+
+            // 1970 ~ 現在的毫秒
+            let now = +new Date()
+            // 換算成1970 ~ 現在的天數
+            let nd = (((now / 1000) / 60) / 60) / 24
+            // 換算成1970 ~ 現在的秒
+            let ns = now / 1000
+
+            // 1970 ~ 2020/1/23的毫秒
+            let up = +new Date("2020-01-23")
+            // 換算成1970 ~ 2020/1/23的天數
+            let ud = (((up / 1000) / 60) / 60) / 24
+            // 換算成1970 ~ 2020/1/23的天數
+            let us = up / 1000
+
+            // 秒數取整
+            let pss = parseInt(ns - us)
+
+            // 2020/1/23 ~ 現在的天
+            let toDay = parseInt(nd - ud)
+            console.log(toDay);
+
+            // 2020/1/23 ~ 現在的秒(整數)
+            console.log(pss);
+
+
+            // 把秒數的位數裝進Arr
+            let pssArr = []
+            for (i = 0; i < pss.toString().length; i++) {
+                let char = pss.toString()[i]
+                pssArr.push(char)
+            }
+            console.log(pssArr);
+
+            // 把百位數轉數字裝進hs
+            let s = pssArr[5].toString() + pssArr[6].toString() + pssArr[7].toString()
+            let hs = parseInt(s)
+            console.log(hs);
+
+
+            let max = tittleArr.length
+            let t1, t2, t3, t4, t5, t6
+            let v = 0
+            let count = 0
+            let timeOut = () => {
+                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+                clearTimeout(t4); clearTimeout(t5); clearTimeout(t6);
+            }
+
+
+
+            // start
+
+            function start() {
+                timeOut()
+
+                t1 = setTimeout(function () {
+                    $("#moni").html(`${tittleArr[0].tittle}`).slideDown()
+                }, 1500)
+
+                t2 = setTimeout(function () {
+                    $(".moni2").html(`${tittleArr[0].desc}`).slideDown("slow")
+                }, 2500)
+
+                t3 = setTimeout(function () {
+                    $("#buttons").animate({ height: "120px", padding: "0" }, 1000)
+                    $(".btn").slideDown(1000)
+                    $("#next").slideDown(1000)
+                }, 3500)
+
+            }
+
+
+            // next/prev
+
+
+            $("#next").click(function () {
+
+                count++; timeOut()
+
+                if (count === 2) {
+                    $("#next").slideUp()
+                    $(".prev").slideDown()
+                } else {
+                    $(".prev").slideDown()
+                }
+
+                $(".slider").css("left", `${v -= 100}%`)
+                $("#moni").html(`${tittleArr[(count - 1)].tittle}`).slideUp()
+                $("#moni2").html(`${tittleArr[(count - 1)].desc}`).slideUp()
+
+                t1 = setTimeout(function () {
+                    $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
+                }, 1000)
+                t2 = setTimeout(function () {
+                    $(".moni2").html(`${tittleArr[count].desc}`).slideDown()
+                }, 2000)
+
+            })
+
+            $("#prev").click(function () {
+
+                count--; timeOut
+
+                if (count === 0) {
+                    $(".prev").slideUp()
+                    $("#next").slideDown()
+                } else {
+                    $("#next").slideDown()
+                }
+
+                $(".slider").css("left", `${v += 100}%`)
+                $("#moni").html(`${tittleArr[count + 1].tittle}`).slideUp()
+                $("#moni2").html(`${tittleArr[(count + 1)].desc}`).slideUp()
+
+                t1 = setTimeout(function () {
+                    $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
+                }, 1000)
+                t2 = setTimeout(function () {
+                    $(".moni2").html(`${tittleArr[count].desc}`).slideDown()
+                }, 2000)
+            })
+
+
+            // days
+
+
+            function days() {
+                timeOut()
+                let date = new Date()
+                let y = date.getFullYear()
+                let m = date.getMonth() + 1
+                let d = date.getDate()
+
+                $("#moni").html(`現在是 <br>${y}年 ${m}月 ${d}日`).fadeIn()
+                t1 = setTimeout(() => {
+                    $("#moni").fadeOut(600)
+                }, 2000)
+                t2 = setTimeout(() => {
+                    times()
+                }, 3500)
+            }
+
+            function times() {
+                timeOut()
+                let date = new Date()
+                let h = date.getHours()
+                let m = date.getMinutes()
+                let s = date.getSeconds()
+
+                $("#moni").html(`${h}時 ${m}分 ${s}秒`).fadeIn()
+                t1 = setInterval(() => {
+                    $("#moni").html(`${h}時 ${m}分 ${s += 1}秒`)
+                }, 1000)
+
+                t2 = setTimeout(() => {
+                    clearInterval(t1)
+                    $("#moni").fadeOut(600)
+                }, 3000)
+                t3 = setTimeout(() => {
+                    sec()
+                }, 4500)
+            }
+
+            function sec() {
+                timeOut()
+
+                $("#moni").html(`距離決定在一起<br>到現在已經過了 <br> ${pss}秒`).fadeIn()
+
+                t1 = setInterval(() => {
+                    $("#moni").html(`距離決定在一起<br>到現在已經過了 <br> ${pss += 1}秒`).fadeIn()
+                }, 1000)
+
+                t2 = setTimeout(() => {
+                    clearInterval(t1)
+                    $("#moni").fadeOut(600)
+                }, 4000)
+
+                t3 = setTimeout(() => {
+
+                    t4 = setInterval(() => {
+                        $("#moni").html(
+                            `也就是已經過了 <br> 
+                            ${pssArr[0]}${pssArr[1]}${pssArr[2]}${pssArr[3]}萬
+                            ${pssArr[4]}${hs += 1}秒`
+                        ).fadeIn()
+                    }, 1000)
+
+                    t5 = setTimeout(() => {
+                        $("#moni2").html(`<br>${toDay}天快樂<br>我愛妳`).slideDown(1000)
+                    }, 4000)
+
+                    t6 = setTimeout(() => {
+                        $("#buttons").animate({ height: "120px", padding: "0" }, 1000)
+                        $("#rbtn").slideDown(1000)
+                        $("#monitor").animate({ height: "150px" }, 800)
+                    }, 6000)
+                }, 5000)
+            }
+
+
+            // btns
+
+
+            $("#btnA").click(function () {
+                $(".btn").slideUp(); $("#moni").slideUp();
+                $("#moni2").slideUp(); $("#next").slideUp()
+                $("#buttons").animate({ height: "0", padding: "10px" }, 800)
+                $("#monitor").animate({ height: "280px" }, 800)
+                setTimeout(() => {
+                    days()
+                }, 1500)
+            })
+
+            $("#btnB").click(function () {
+
+            })
+
+
+            $("#home").click(function () {
+                location.href = ("index.html")
+
+            })
+
+            $("#rbtn").click(function () {
+                location.href = ("days.html")
+            })
+
+
+            start()
+
+        })
+
+
+    </script>
+
+
+</body>
+
+</html>
