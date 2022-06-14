@@ -131,17 +131,15 @@
         position: absolute;
         top: 0px;
         display: none;
+        overflow: auto;
     }
 
     .bannerarr {
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* background-color:
-            rgba(180, 100, 100, 0.5); */
-        background: linear-gradient(to right bottom,
-                rgb(255 18 0 / 50%),
-                rgb(126 77 77 / 50%));
+        background-color:
+            rgba(180, 100, 100, 0.5);
     }
 
     .img {
@@ -169,9 +167,10 @@
     } */
 
     .smooth {
-        position: absolute;
-        transform: translateY(-9.1%);
+        /* position: absolute; */
+        /* transform: translateY(-9.1%); */
         transition: all 2s;
+        top: -100%;
     }
 
     .moni {
@@ -265,11 +264,6 @@
 
             <div class="heart">
 
-                <!-- <div id="hrt">TIMES</div>
-                <div id="hrt2">
-                    <div class="hrt3"></div>
-                </div> -->
-
             </div>
 
             <div class="wrap">
@@ -341,24 +335,16 @@
 
 
     <script src="jquery-3.6.0.js"></script>
-    <!-- <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script> -->
-
 
     <script type="text/javascript">
 
 
-        let tittleArr = [
+        let tittleArr = {
+            tittle: "歡迎來到時光機",
+            desc: `準備好的話<br>請按下開始吧`
+        }
 
-            {
-                tittle: "歡迎來到時光機",
-                desc: `準備好的話<br>請按下開始吧`
-            },
-            {
-                tittle: "拯救邱大少大作戰\n",
-                desc: `邱大少快要爆炸了<br>快來搶救邱大少吧`
-            }
-
-        ]
+        
 
 
         // function sty (element,style,para){
@@ -366,32 +352,29 @@
         // }
 
         let imgArr = [
-
             "time-img/img01.JPG",
             "time-img/img02.JPG",
-
         ]
 
 
         $(document).ready(function () {
 
-
-            let max = tittleArr.length
             let t1, t2, t3, t4, t5, t6
+            let timeOut = () => {
+                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+                clearTimeout(t4); clearTimeout(t5); clearTimeout(t6)
+            }
+            let banner = document.getElementById('banner')
 
 
             function start() {
 
-                let v = 0
-                let count = 0
-
-
                 t1 = setTimeout(function () {
-                    $("#moni").html(`${tittleArr[count].tittle}`).slideDown()
+                    $("#moni").html(`${tittleArr.tittle}`).slideDown()
                 }, 1500)
 
                 t2 = setTimeout(function () {
-                    $(".moni2").html(`${tittleArr[count].desc}`).slideDown("slow")
+                    $(".moni2").html(`${tittleArr.desc}`).slideDown("slow")
                 }, 3000)
 
                 t3 = setTimeout(function () {
@@ -406,8 +389,8 @@
                 $("#moni").slideUp()
                 $("#moni2").slideUp()
                 $(".btn").slideUp()
-                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3)
-
+                
+                timeOut()
 
                 t1 = setTimeout(function () {
                     $("#firstImg").css({ "width": "95%", "height": "200px", "background-image": `url(${imgArr[0]})` }).slideDown(1000)
@@ -448,8 +431,8 @@
 
             function start2() {
 
-                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
-                clearTimeout(t4); clearTimeout(t5)
+                timeOut()
+
                 $("#firstImg").css("background-image", `url(${imgArr[1]})`).fadeOut(1500)
                 $(".game").animate({ width: "90%" })
 
@@ -462,7 +445,6 @@
 
 
                 t2 = setTimeout(function () {
-                    // $("#banner").addClass("smooth")
                     // $("#banner").css("top","-100%")
                     $("#banner").addClass("smooth")
                 }, 4000)
@@ -470,16 +452,12 @@
 
                 t3 = setTimeout(function () {
                     // $(".smooth").css({ "transform": "translateY(-12.5%)"})
-                    $(".smooth").css("transform", "translateY(-31.8%)")
+                    $(".smooth").css({"top": "-500%"})
                 }, 7000)
 
 
                 t4 = setTimeout(function () {
-                    // $("#banner").animate({ top: "-2300%" }, 5000)
-                    // $("#banner").removeClass("smooth2")
-                    // $(".smooth2").css("display","none")
-                    // $("#banner").addClass("smooth")
-                    $(".smooth").css({ "transform": "translateY(-95.45%)", "transition": "all 7s" })
+                    $(".smooth").css({ "top": "-2100%", "transition": "all 7s" })
 
                 }, 11000)
 
@@ -523,45 +501,43 @@
 
             function start3() {
 
-                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
-                clearTimeout(t4); clearTimeout(t5); clearTimeout(t6)
-
+                timeOut()
 
                 t1 = setTimeout(function () {
-                    $(".smooth").css({ "transform": "translateY(-77.28%)", "transition": "all 2s" })
+                    $(".smooth").css({ "top": "-1900%", "transition": "all 2s" })
                     // $("#banner").animate({ top: "-1900%" }, 1500)
                 }, 7500)
 
 
                 t2 = setTimeout(function () {
-                    $(".smooth").css({ "transform": "translateY(-54.5%)" })
+                    $(".smooth").css({ "top": "-1200%" })
                     // $("#banner").animate({ top: "-1200%" }, 1500)
                 }, 10000)
 
 
                 t3 = setTimeout(function () {
-                    $(".smooth").css({ "transform": "translateY(-50%)" })
+                    $(".smooth").css({ "top": "-1100%" })
                     // $("#banner").animate({ top: "-1100%" }, 1500)
                 }, 13000)
 
                 t4 = setTimeout(function () {
                     start4()
 
-                }, 15000)
+                }, 16000)
 
             }
 
 
             function start4() {
 
-                clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
-                clearTimeout(t4);
+                timeOut()
 
 
                 t1 = setTimeout(function () {
                     $(".img").animate({ height: "210px" }, 1000)
                     $("#monitor").animate({ height: "250px" }, 1000)
                     $(".game").animate({ width: "80%" }, 1000)
+                    $('#banner').removeClass('smooth').css({'position':'static'})
                 }, 500)
 
                 t2 = setTimeout(function () {
@@ -578,9 +554,10 @@
             $("#home").click(function () {
                 location.href = ("index.html")
             })
-
+          
 
             start()
+
 
         })
 

@@ -319,7 +319,7 @@
 
 
             // 1970 ~ 現在的毫秒
-            let now = +new Date()
+            let now = Number(new Date())
             // 換算成1970 ~ 現在的天數
             let nd = (((now / 1000) / 60) / 60) / 24
             // 換算成1970 ~ 現在的秒
@@ -329,15 +329,15 @@
             let up = +new Date("2020-01-23")
             // 換算成1970 ~ 2020/1/23的天數
             let ud = (((up / 1000) / 60) / 60) / 24
-            // 換算成1970 ~ 2020/1/23的天數
+            // 換算成1970 ~ 2020/1/23秒
             let us = up / 1000
 
             // 秒數取整
             let pss = parseInt(ns - us)
 
             // 2020/1/23 ~ 現在的天
-            let toDay = parseInt(nd - ud)
-            console.log(toDay);
+            let today = parseInt(nd - ud)
+            console.log(today);
 
             // 2020/1/23 ~ 現在的秒(整數)
             console.log(pss);
@@ -371,7 +371,6 @@
             // start
 
             function start() {
-                timeOut()
 
                 t1 = setTimeout(function () {
                     $("#moni").html(`${tittleArr[0].tittle}`).slideDown()
@@ -395,7 +394,7 @@
 
             $("#next").click(function () {
 
-                count++; timeOut()
+                count++; timeOut();
 
                 if (count === 2) {
                     $("#next").slideUp()
@@ -419,7 +418,7 @@
 
             $("#prev").click(function () {
 
-                count--; timeOut
+                count--; timeOut;
 
                 if (count === 0) {
                     $(".prev").slideUp()
@@ -506,7 +505,7 @@
                     }, 1000)
 
                     t5 = setTimeout(() => {
-                        $("#moni2").html(`<br>${toDay}天快樂<br>我愛妳`).slideDown(1000)
+                        $("#moni2").html(`<br>${today}天快樂<br>我愛妳`).slideDown(1000)
                     }, 4000)
 
                     t6 = setTimeout(() => {
